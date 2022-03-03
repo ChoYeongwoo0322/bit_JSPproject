@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import = "java.util.Objects" %>
+<%@ page import="Pack.LoginManager"%>
+
+<%
+	LoginManager loginManager = LoginManager.getInstance(); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -140,9 +146,10 @@ body {
 				class="fas fa-address-card"></i>Account</a>
 			<div class="subMenu">
 				<%
-					String re = (String)session.getAttribute("id");
-	
-					if(re==null)
+					String userId = request.getParameter("userId");
+						
+					String check = loginManager.getUserID(session);
+					if(check == null)
 					{
 						out.println("<a href=" + "login.jsp" + ">로그인</a>");
 					}		

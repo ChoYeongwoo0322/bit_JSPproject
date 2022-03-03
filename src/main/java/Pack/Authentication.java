@@ -6,10 +6,11 @@ import java.sql.ResultSet;
 
 public class Authentication {
 	
-	public String isMember(String id, String pwd)
+	public Boolean isMember(String id, String pwd)
 	{
-		String name = null;
-		String sql = "select id from user where id=? and pwd=?";
+		Boolean isCheck = null;
+		
+		String sql = "SELECT exists (select * from user where id=? and pwd=?) as isMember;";
 		try {
 			Connection conn = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -20,14 +21,13 @@ public class Authentication {
 
 			if(rs.next())
 			{
-				System.out.println(name);
-				name = rs.getString(1);
+				isCheck = rs.getBoolean(1);
 			}
 			
 		}catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}
-		return name;
+		return isCheck;
 	}
 }
