@@ -119,7 +119,6 @@ body {
 
 .indextitle {
 	text-align: center;
-	margin: 0 auto;
 }
 
 a {
@@ -130,11 +129,15 @@ a {
 </head>
 <body>
 	<div class="indextitle">
-		<p>
-			<MARQUEE width="150" height="100" direction="up" behavior="alternate">
-				<a href="#" class=""><h2>투표하러가기</h2></a>
-			</MARQUEE>
-		</p>
+		<label>
+			<a href="login.jsp" class=""><h2>로그인</h2></a>
+		</label>
+		<label>
+			<a href="#" class=""><h2>로그아웃</h2></a>
+		</label>
+		<label>
+			<a href="vote.jsp" class=""><h2>투표하러가기</h2></a>
+		</label>
 	</div>
 	<div class="wrapper">
 		<div class="item">
