@@ -15,18 +15,16 @@
 	<%
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
-		System.out.println(id + " " + pwd);
+		
 		Authentication at = new Authentication();
-		String name = at.isMember(id, pwd);
+		String user_id = at.isMember(id, pwd);
 		
-		
-		if(name != null)
+		if(user_id != null)
 		{ 
-			session.setAttribute("member", "ok");
-			System.out.println(name);
+			session.setAttribute("id", id);
 			%>
 			<jsp:forward page="index.jsp">
-				<jsp:param value="<%=name%>" name="name"/>
+				<jsp:param value="<%=user_id%>" name="name"/>
 			</jsp:forward>
 			<%		
 		}

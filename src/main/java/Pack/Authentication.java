@@ -9,7 +9,7 @@ public class Authentication {
 	public String isMember(String id, String pwd)
 	{
 		String name = null;
-		String sql = "select name from user where id=? and pwd=?";
+		String sql = "select id from user where id=? and pwd=?";
 		try {
 			Connection conn = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);

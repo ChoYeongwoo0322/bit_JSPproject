@@ -140,7 +140,7 @@ body {
 				class="fas fa-address-card"></i>Account</a>
 			<div class="subMenu">
 				<%
-					String re = (String)session.getAttribute("member");
+					String re = (String)session.getAttribute("id");
 	
 					if(re==null)
 					{

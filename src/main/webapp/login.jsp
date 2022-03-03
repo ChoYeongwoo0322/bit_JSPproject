@@ -8,9 +8,9 @@
 </head>
 <body>
 	<form action="loginCheck.jsp" method="post">
-		<label>ID: </label> <input name="id" type="text"><br> <label>PW:
-		</label> <input name="pwd" type="password"><br> <input
-			type="submit" value="로그인">
+		<label>ID: </label> <input name="id" type="text"><br> 
+		<label>PW: </label> <input name="pwd" type="password"><br> 
+		<input type="submit" value="로그인">
 	</form>
 </body>
 </html>
