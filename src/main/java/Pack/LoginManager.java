@@ -2,19 +2,19 @@ package Pack;
 import java.util.*;
 import javax.servlet.http.*;
 /*
-* sessionì´ ëŠì–´ì¡Œì„ë•Œë¥¼ ì²˜ë¦¬í•˜ê¸° ìœ„í•´ ì‚¬ìš©
-* staticë©”ì†Œë“œì—ì„œëŠ” staticë§Œì‚¬ìš© í•˜ë¯€ë¡œstaticìœ¼ë¡œ ì„ ì–¸í•œë‹¤.
+* sessionÀÌ ²÷¾îÁ³À»¶§¸¦ Ã³¸®ÇÏ±â À§ÇØ »ç¿ë
+* static¸Ş¼Òµå¿¡¼­´Â static¸¸»ç¿ë ÇÏ¹Ç·ÎstaticÀ¸·Î ¼±¾ğÇÑ´Ù.
 */
 public class LoginManager implements HttpSessionBindingListener{
 
     private static LoginManager loginManager = null;
     
-    //ë¡œê·¸ì¸í•œ ì ‘ì†ìë¥¼ ë‹´ê¸°ìœ„í•œ í•´ì‹œí…Œì´ë¸”
+    //·Î±×ÀÎÇÑ Á¢¼ÓÀÚ¸¦ ´ã±âÀ§ÇÑ ÇØ½ÃÅ×ÀÌºí
     @SuppressWarnings("rawtypes")
 	private static Hashtable loginUsers = new Hashtable();
     
     /*
-     * ì‹±ê¸€í†¤ íŒ¨í„´ ì‚¬ìš©
+     * ½Ì±ÛÅæ ÆĞÅÏ »ç¿ë
      */
     public static synchronized LoginManager getInstance(){
         if(loginManager == null){
@@ -25,33 +25,33 @@ public class LoginManager implements HttpSessionBindingListener{
      
    
     /*
-     * ì´ ë©”ì†Œë“œëŠ” ì„¸ì…˜ì´ ì—°ê²°ë˜ì„ë•Œ í˜¸ì¶œëœë‹¤.(session.setAttribute("login", this))
-     * Hashtableì— ì„¸ì…˜ê³¼ ì ‘ì†ì ì•„ì´ë””ë¥¼ ì €ì¥í•œë‹¤.
+     * ÀÌ ¸Ş¼Òµå´Â ¼¼¼ÇÀÌ ¿¬°áµÇÀ»¶§ È£ÃâµÈ´Ù.(session.setAttribute("login", this))
+     * Hashtable¿¡ ¼¼¼Ç°ú Á¢¼ÓÀÚ ¾ÆÀÌµğ¸¦ ÀúÀåÇÑ´Ù.
      */
     @SuppressWarnings("unchecked")
 	public void valueBound(HttpSessionBindingEvent event) {
-        //sessionê°’ì„ putí•œë‹¤.
+        //session°ªÀ» putÇÑ´Ù.
         loginUsers.put(event.getSession(), event.getName());
-        System.out.println(event.getName() + "ë‹˜ì´ ë¡œê·¸ì¸ í•˜ì…¨ìŠµë‹ˆë‹¤.");
-        System.out.println("í˜„ì¬ ì ‘ì†ì ìˆ˜ : " +  getUserCount());
+        System.out.println(event.getName() + "´ÔÀÌ ·Î±×ÀÎ ÇÏ¼Ì½À´Ï´Ù.");
+        System.out.println("ÇöÀç Á¢¼ÓÀÚ ¼ö : " +  getUserCount());
      }
     
     
      /*
-      * ì´ ë©”ì†Œë“œëŠ” ì„¸ì…˜ì´ ëŠê²¼ì„ë•Œ í˜¸ì¶œëœë‹¤.(invalidate)
-      * Hashtableì— ì €ì¥ëœ ë¡œê·¸ì¸í•œ ì •ë³´ë¥¼ ì œê±°í•´ ì¤€ë‹¤.
+      * ÀÌ ¸Ş¼Òµå´Â ¼¼¼ÇÀÌ ²÷°åÀ»¶§ È£ÃâµÈ´Ù.(invalidate)
+      * Hashtable¿¡ ÀúÀåµÈ ·Î±×ÀÎÇÑ Á¤º¸¸¦ Á¦°ÅÇØ ÁØ´Ù.
       */
      public void valueUnbound(HttpSessionBindingEvent event) {
-         //sessionê°’ì„ ì°¾ì•„ì„œ ì—†ì• ì¤€ë‹¤.
+         //session°ªÀ» Ã£¾Æ¼­ ¾ø¾ÖÁØ´Ù.
          loginUsers.remove(event.getSession());
-         System.out.println("  " + event.getName() + "ë‹˜ì´ ë¡œê·¸ì•„ì›ƒ í•˜ì…¨ìŠµë‹ˆë‹¤.");
-         System.out.println("í˜„ì¬ ì ‘ì†ì ìˆ˜ : " +  getUserCount());
+         System.out.println("  " + event.getName() + "´ÔÀÌ ·Î±×¾Æ¿ô ÇÏ¼Ì½À´Ï´Ù.");
+         System.out.println("ÇöÀç Á¢¼ÓÀÚ ¼ö : " +  getUserCount());
      }
      
      
      /*
-      * ì…ë ¥ë°›ì€ ì•„ì´ë””ë¥¼ í•´ì‹œí…Œì´ë¸”ì—ì„œ ì‚­ì œ. 
-      * @param userID ì‚¬ìš©ì ì•„ì´ë””
+      * ÀÔ·Â¹ŞÀº ¾ÆÀÌµğ¸¦ ÇØ½ÃÅ×ÀÌºí¿¡¼­ »èÁ¦. 
+      * @param userID »ç¿ëÀÚ ¾ÆÀÌµğ
       * @return void
       */ 
      public void removeSession(String userId){
@@ -60,18 +60,18 @@ public class LoginManager implements HttpSessionBindingListener{
           while(e.hasMoreElements()){
                session = (HttpSession)e.nextElement();
                if(loginUsers.get(session).equals(userId)){
-                   //ì„¸ì…˜ì´ invalidateë ë•Œ HttpSessionBindingListenerë¥¼ 
-                   //êµ¬í˜„í•˜ëŠ” í´ë ˆìŠ¤ì˜ valueUnbound()í•¨ìˆ˜ê°€ í˜¸ì¶œëœë‹¤.
+                   //¼¼¼ÇÀÌ invalidateµÉ¶§ HttpSessionBindingListener¸¦ 
+                   //±¸ÇöÇÏ´Â Å¬·¹½ºÀÇ valueUnbound()ÇÔ¼ö°¡ È£ÃâµÈ´Ù.
                    session.invalidate();
                }
           }
      }
      
      /*
-      * ì‚¬ìš©ìê°€ ì…ë ¥í•œ ID, PWê°€ ë§ëŠ”ì§€ í™•ì¸í•˜ëŠ” ë©”ì†Œë“œ
-      * @param userID ì‚¬ìš©ì ì•„ì´ë””
-      * @param userPW ì‚¬ìš©ì íŒ¨ìŠ¤ì›Œë“œ
-      * @return boolean ID/PWê°€ ì¼ì¹˜í•˜ëŠ” ì§€ ì—¬ë¶€
+      * »ç¿ëÀÚ°¡ ÀÔ·ÂÇÑ ID, PW°¡ ¸Â´ÂÁö È®ÀÎÇÏ´Â ¸Ş¼Òµå
+      * @param userID »ç¿ëÀÚ ¾ÆÀÌµğ
+      * @param userPW »ç¿ëÀÚ ÆĞ½º¿öµå
+      * @return boolean ID/PW°¡ ÀÏÄ¡ÇÏ´Â Áö ¿©ºÎ
       */
      public boolean isValid(String userId, String userPw){
          
@@ -82,10 +82,10 @@ public class LoginManager implements HttpSessionBindingListener{
 
 
     /*
-     * í•´ë‹¹ ì•„ì´ë””ì˜ ë™ì‹œ ì‚¬ìš©ì„ ë§‰ê¸°ìœ„í•´ì„œ 
-     * ì´ë¯¸ ì‚¬ìš©ì¤‘ì¸ ì•„ì´ë””ì¸ì§€ë¥¼ í™•ì¸í•œë‹¤.
-     * @param userID ì‚¬ìš©ì ì•„ì´ë””
-     * @return boolean ì´ë¯¸ ì‚¬ìš© ì¤‘ì¸ ê²½ìš° true, ì‚¬ìš©ì¤‘ì´ ì•„ë‹ˆë©´ false
+     * ÇØ´ç ¾ÆÀÌµğÀÇ µ¿½Ã »ç¿ëÀ» ¸·±âÀ§ÇØ¼­ 
+     * ÀÌ¹Ì »ç¿ëÁßÀÎ ¾ÆÀÌµğÀÎÁö¸¦ È®ÀÎÇÑ´Ù.
+     * @param userID »ç¿ëÀÚ ¾ÆÀÌµğ
+     * @return boolean ÀÌ¹Ì »ç¿ë ÁßÀÎ °æ¿ì true, »ç¿ëÁßÀÌ ¾Æ´Ï¸é false
      */
     public boolean isUsing(String userID){
         return loginUsers.containsValue(userID);
@@ -93,21 +93,21 @@ public class LoginManager implements HttpSessionBindingListener{
      
     
     /*
-     * ë¡œê·¸ì¸ì„ ì™„ë£Œí•œ ì‚¬ìš©ìì˜ ì•„ì´ë””ë¥¼ ì„¸ì…˜ì— ì €ì¥í•˜ëŠ” ë©”ì†Œë“œ
-     * @param session ì„¸ì…˜ ê°ì²´
-     * @param userID ì‚¬ìš©ì ì•„ì´ë””
+     * ·Î±×ÀÎÀ» ¿Ï·áÇÑ »ç¿ëÀÚÀÇ ¾ÆÀÌµğ¸¦ ¼¼¼Ç¿¡ ÀúÀåÇÏ´Â ¸Ş¼Òµå
+     * @param session ¼¼¼Ç °´Ã¼
+     * @param userID »ç¿ëÀÚ ¾ÆÀÌµğ
      */
     public void setSession(HttpSession session, String userId){
-        //ì´ìˆœê°„ì— Session Bindingì´ë²¤íŠ¸ê°€ ì¼ì–´ë‚˜ëŠ” ì‹œì 
-        //nameê°’ìœ¼ë¡œ userId, valueê°’ìœ¼ë¡œ ìê¸°ìì‹ (HttpSessionBindingListenerë¥¼ êµ¬í˜„í•˜ëŠ” Object)
-        session.setAttribute(userId, this);//loginì— ìê¸°ìì‹ ì„ ì§‘ì–´ë„£ëŠ”ë‹¤.
+        //ÀÌ¼ø°£¿¡ Session BindingÀÌº¥Æ®°¡ ÀÏ¾î³ª´Â ½ÃÁ¡
+        //name°ªÀ¸·Î userId, value°ªÀ¸·Î ÀÚ±âÀÚ½Å(HttpSessionBindingListener¸¦ ±¸ÇöÇÏ´Â Object)
+        session.setAttribute(userId, this);//login¿¡ ÀÚ±âÀÚ½ÅÀ» Áı¾î³Ö´Â´Ù.
     }
      
      
     /*
-      * ì…ë ¥ë°›ì€ ì„¸ì…˜Objectë¡œ ì•„ì´ë””ë¥¼ ë¦¬í„´í•œë‹¤.
-      * @param session : ì ‘ì†í•œ ì‚¬ìš©ìì˜ session Object
-      * @return String : ì ‘ì†ì ì•„ì´ë””
+      * ÀÔ·Â¹ŞÀº ¼¼¼ÇObject·Î ¾ÆÀÌµğ¸¦ ¸®ÅÏÇÑ´Ù.
+      * @param session : Á¢¼ÓÇÑ »ç¿ëÀÚÀÇ session Object
+      * @return String : Á¢¼ÓÀÚ ¾ÆÀÌµğ
      */
     public String getUserID(HttpSession session){
         return (String)loginUsers.get(session);
@@ -115,15 +115,15 @@ public class LoginManager implements HttpSessionBindingListener{
      
      
     /*
-     * í˜„ì¬ ì ‘ì†í•œ ì´ ì‚¬ìš©ì ìˆ˜
-     * @return int  í˜„ì¬ ì ‘ì†ì ìˆ˜
+     * ÇöÀç Á¢¼ÓÇÑ ÃÑ »ç¿ëÀÚ ¼ö
+     * @return int  ÇöÀç Á¢¼ÓÀÚ ¼ö
      */
     public int getUserCount(){
         return loginUsers.size();
     }
      
     /*
-     * í˜„ì¬ ì ‘ì†ì¤‘ì¸ ëª¨ë“  ì‚¬ìš©ì ì•„ì´ë””ë¥¼ ì¶œë ¥
+     * ÇöÀç Á¢¼ÓÁßÀÎ ¸ğµç »ç¿ëÀÚ ¾ÆÀÌµğ¸¦ Ãâ·Â
      * @return void
      */
     public void printloginUsers(){
@@ -133,13 +133,13 @@ public class LoginManager implements HttpSessionBindingListener{
         int i = 0;
         while(e.hasMoreElements()){
             session = (HttpSession)e.nextElement();
-            System.out.println((++i) + ". ì ‘ì†ì : " +  loginUsers.get(session));
+            System.out.println((++i) + ". Á¢¼ÓÀÚ : " +  loginUsers.get(session));
         }
         System.out.println("===========================================");
      }
      
     /*
-     * í˜„ì¬ ì ‘ì†ì¤‘ì¸ ëª¨ë“  ì‚¬ìš©ìë¦¬ìŠ¤íŠ¸ë¥¼ ë¦¬í„´
+     * ÇöÀç Á¢¼ÓÁßÀÎ ¸ğµç »ç¿ëÀÚ¸®½ºÆ®¸¦ ¸®ÅÏ
      * @return list
      */
     public Collection getUsers(){
