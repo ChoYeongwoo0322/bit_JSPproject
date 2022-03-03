@@ -24,8 +24,14 @@ h1 {
 table {
 	margin: 0 auto;
 	text-align: center;
-	width: 50%;
-	border:
+	padding: 10px;
+}
+.tableTitle{
+	font-size: 20px;
+	font-weight: bold;
+}
+.tableBody{
+
 }
 </style>
 </head>
@@ -39,30 +45,27 @@ table {
 	Class.forName("com.mysql.jdbc.Driver");
 	String url = "jdbc:mysql://13.209.35.25:3307/db01?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC";
 	con = DriverManager.getConnection(url, "lion", "1234");
-	String sql = "select u.idx, u.id, u.pwd, u.email, u.phone, u.sysdate, r.regionNm as region from user u"
-			+ " inner join region r on u.region = r.regionPk";
+	String sql = "select r.res_nm, count(v.res) as count from voted v" + " join result r on r.id = v.res"
+			+ " group by v.res";
 	pstmt = con.prepareStatement(sql);
 	rs = pstmt.executeQuery();
 	%>
 	<div>
 		<table>
 			<thead>
-				<tr id=\"test\">
-					<td>등수</td>
+				<tr class="tableTitle">
 					<td>가게명</td>
-					<td>투표율</td>
+					<td>득표수</td>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="tableBody">
 				<%
 				while (rs.next()) {
-					String idx = rs.getString("idx");
-					String id = rs.getString("id");
-					String pwd = rs.getString("pwd");
+					String res_nm = rs.getString("r.res_nm");
+					String count = rs.getString("count");
 					out.println("<tr>");
-					out.println("<td>" + id + "</td>");
-					out.println("<td>" + pwd + "</td>");
-					out.println("<td>" + "삭제" + "</td>");
+					out.println("<td>" + res_nm + "</td>");
+					out.println("<td>" + count + "</td>");
 					out.println("</tr>");
 				}
 				%>
