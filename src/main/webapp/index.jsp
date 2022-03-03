@@ -160,6 +160,9 @@ a {
 		<label>
 			<a href="vote.jsp" class=""><h2>투표하러가기</h2></a>
 		</label>
+		<label>
+			<a href="join.jsp" class=""><h2>회원가입</h2></a>
+		</label>
 	</div>
 	<div class="wrapper">
 		<div class="item">

@@ -2,19 +2,19 @@ package Pack;
 import java.util.*;
 import javax.servlet.http.*;
 /*
-* sessionÀÌ ²÷¾îÁ³À»¶§¸¦ Ã³¸®ÇÏ±â À§ÇØ »ç¿ë
-* static¸Þ¼Òµå¿¡¼­´Â static¸¸»ç¿ë ÇÏ¹Ç·ÎstaticÀ¸·Î ¼±¾ðÇÑ´Ù.
+* sessionï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+* staticï¿½Þ¼Òµå¿¡ï¿½ï¿½ï¿½ï¿½ staticï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¹Ç·ï¿½staticï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 */
 public class LoginManager implements HttpSessionBindingListener{
 
     private static LoginManager loginManager = null;
     
-    //·Î±×ÀÎÇÑ Á¢¼ÓÀÚ¸¦ ´ã±âÀ§ÇÑ ÇØ½ÃÅ×ÀÌºí
+    //ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ï¿½Ìºï¿½
     @SuppressWarnings("rawtypes")
 	private static Hashtable loginUsers = new Hashtable();
     
     /*
-     * ½Ì±ÛÅæ ÆÐÅÏ »ç¿ë
+     * ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
      */
     public static synchronized LoginManager getInstance(){
         if(loginManager == null){
@@ -25,33 +25,33 @@ public class LoginManager implements HttpSessionBindingListener{
      
    
     /*
-     * ÀÌ ¸Þ¼Òµå´Â ¼¼¼ÇÀÌ ¿¬°áµÇÀ»¶§ È£ÃâµÈ´Ù.(session.setAttribute("login", this))
-     * Hashtable¿¡ ¼¼¼Ç°ú Á¢¼ÓÀÚ ¾ÆÀÌµð¸¦ ÀúÀåÇÑ´Ù.
+     * ï¿½ï¿½ ï¿½Þ¼Òµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½È´ï¿½.(session.setAttribute("login", this))
+     * Hashtableï¿½ï¿½ ï¿½ï¿½ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
      */
     @SuppressWarnings("unchecked")
 	public void valueBound(HttpSessionBindingEvent event) {
-        //session°ªÀ» putÇÑ´Ù.
+        //sessionï¿½ï¿½ï¿½ï¿½ putï¿½Ñ´ï¿½.
         loginUsers.put(event.getSession(), event.getName());
-        System.out.println(event.getName() + "´ÔÀÌ ·Î±×ÀÎ ÇÏ¼Ì½À´Ï´Ù.");
-        System.out.println("ÇöÀç Á¢¼ÓÀÚ ¼ö : " +  getUserCount());
+        System.out.println(event.getName() + "ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½Ï¼Ì½ï¿½ï¿½Ï´ï¿½.");
+        System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ : " +  getUserCount());
      }
     
     
      /*
-      * ÀÌ ¸Þ¼Òµå´Â ¼¼¼ÇÀÌ ²÷°åÀ»¶§ È£ÃâµÈ´Ù.(invalidate)
-      * Hashtable¿¡ ÀúÀåµÈ ·Î±×ÀÎÇÑ Á¤º¸¸¦ Á¦°ÅÇØ ÁØ´Ù.
+      * ï¿½ï¿½ ï¿½Þ¼Òµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½È´ï¿½.(invalidate)
+      * Hashtableï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½.
       */
      public void valueUnbound(HttpSessionBindingEvent event) {
-         //session°ªÀ» Ã£¾Æ¼­ ¾ø¾ÖÁØ´Ù.
+         //sessionï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
          loginUsers.remove(event.getSession());
-         System.out.println("  " + event.getName() + "´ÔÀÌ ·Î±×¾Æ¿ô ÇÏ¼Ì½À´Ï´Ù.");
-         System.out.println("ÇöÀç Á¢¼ÓÀÚ ¼ö : " +  getUserCount());
+         System.out.println("  " + event.getName() + "ï¿½ï¿½ï¿½ï¿½ ï¿½Î±×¾Æ¿ï¿½ ï¿½Ï¼Ì½ï¿½ï¿½Ï´ï¿½.");
+         System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ : " +  getUserCount());
      }
      
      
      /*
-      * ÀÔ·Â¹ÞÀº ¾ÆÀÌµð¸¦ ÇØ½ÃÅ×ÀÌºí¿¡¼­ »èÁ¦. 
-      * @param userID »ç¿ëÀÚ ¾ÆÀÌµð
+      * ï¿½Ô·Â¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. 
+      * @param userID ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
       * @return void
       */ 
      public void removeSession(String userId){
@@ -60,32 +60,31 @@ public class LoginManager implements HttpSessionBindingListener{
           while(e.hasMoreElements()){
                session = (HttpSession)e.nextElement();
                if(loginUsers.get(session).equals(userId)){
-                   //¼¼¼ÇÀÌ invalidateµÉ¶§ HttpSessionBindingListener¸¦ 
-                   //±¸ÇöÇÏ´Â Å¬·¹½ºÀÇ valueUnbound()ÇÔ¼ö°¡ È£ÃâµÈ´Ù.
+                   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ invalidateï¿½É¶ï¿½ HttpSessionBindingListenerï¿½ï¿½ 
+                   //ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ valueUnbound()ï¿½Ô¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½È´ï¿½.
                    session.invalidate();
                }
           }
      }
      
      /*
-      * »ç¿ëÀÚ°¡ ÀÔ·ÂÇÑ ID, PW°¡ ¸Â´ÂÁö È®ÀÎÇÏ´Â ¸Þ¼Òµå
-      * @param userID »ç¿ëÀÚ ¾ÆÀÌµð
-      * @param userPW »ç¿ëÀÚ ÆÐ½º¿öµå
-      * @return boolean ID/PW°¡ ÀÏÄ¡ÇÏ´Â Áö ¿©ºÎ
+      * ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ID, PWï¿½ï¿½ ï¿½Â´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½
+      * @param userID ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
+      * @param userPW ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½
+      * @return boolean ID/PWï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
       */
      public boolean isValid(String userId, String userPw){
          
     	 Authentication at = new Authentication();
-    	 at.isMember(userId, userPw);
-         return true;
+    	 return at.isMember(userId, userPw);
      }
 
 
     /*
-     * ÇØ´ç ¾ÆÀÌµðÀÇ µ¿½Ã »ç¿ëÀ» ¸·±âÀ§ÇØ¼­ 
-     * ÀÌ¹Ì »ç¿ëÁßÀÎ ¾ÆÀÌµðÀÎÁö¸¦ È®ÀÎÇÑ´Ù.
-     * @param userID »ç¿ëÀÚ ¾ÆÀÌµð
-     * @return boolean ÀÌ¹Ì »ç¿ë ÁßÀÎ °æ¿ì true, »ç¿ëÁßÀÌ ¾Æ´Ï¸é false
+     * ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ 
+     * ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ñ´ï¿½.
+     * @param userID ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
+     * @return boolean ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ true, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ false
      */
     public boolean isUsing(String userID){
         return loginUsers.containsValue(userID);
@@ -93,21 +92,21 @@ public class LoginManager implements HttpSessionBindingListener{
      
     
     /*
-     * ·Î±×ÀÎÀ» ¿Ï·áÇÑ »ç¿ëÀÚÀÇ ¾ÆÀÌµð¸¦ ¼¼¼Ç¿¡ ÀúÀåÇÏ´Â ¸Þ¼Òµå
-     * @param session ¼¼¼Ç °´Ã¼
-     * @param userID »ç¿ëÀÚ ¾ÆÀÌµð
+     * ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½
+     * @param session ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼
+     * @param userID ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
      */
     public void setSession(HttpSession session, String userId){
-        //ÀÌ¼ø°£¿¡ Session BindingÀÌº¥Æ®°¡ ÀÏ¾î³ª´Â ½ÃÁ¡
-        //name°ªÀ¸·Î userId, value°ªÀ¸·Î ÀÚ±âÀÚ½Å(HttpSessionBindingListener¸¦ ±¸ÇöÇÏ´Â Object)
-        session.setAttribute(userId, this);//login¿¡ ÀÚ±âÀÚ½ÅÀ» Áý¾î³Ö´Â´Ù.
+        //ï¿½Ì¼ï¿½ï¿½ï¿½ï¿½ï¿½ Session Bindingï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½Ï¾î³ªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //nameï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ userId, valueï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú±ï¿½ï¿½Ú½ï¿½(HttpSessionBindingListenerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Object)
+        session.setAttribute(userId, this);//loginï¿½ï¿½ ï¿½Ú±ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´Â´ï¿½.
     }
      
      
     /*
-      * ÀÔ·Â¹ÞÀº ¼¼¼ÇObject·Î ¾ÆÀÌµð¸¦ ¸®ÅÏÇÑ´Ù.
-      * @param session : Á¢¼ÓÇÑ »ç¿ëÀÚÀÇ session Object
-      * @return String : Á¢¼ÓÀÚ ¾ÆÀÌµð
+      * ï¿½Ô·Â¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Objectï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+      * @param session : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ session Object
+      * @return String : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
      */
     public String getUserID(HttpSession session){
         return (String)loginUsers.get(session);
@@ -115,15 +114,15 @@ public class LoginManager implements HttpSessionBindingListener{
      
      
     /*
-     * ÇöÀç Á¢¼ÓÇÑ ÃÑ »ç¿ëÀÚ ¼ö
-     * @return int  ÇöÀç Á¢¼ÓÀÚ ¼ö
+     * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+     * @return int  ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
      */
     public int getUserCount(){
         return loginUsers.size();
     }
      
     /*
-     * ÇöÀç Á¢¼ÓÁßÀÎ ¸ðµç »ç¿ëÀÚ ¾ÆÀÌµð¸¦ Ãâ·Â
+     * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½
      * @return void
      */
     public void printloginUsers(){
@@ -133,13 +132,13 @@ public class LoginManager implements HttpSessionBindingListener{
         int i = 0;
         while(e.hasMoreElements()){
             session = (HttpSession)e.nextElement();
-            System.out.println((++i) + ". Á¢¼ÓÀÚ : " +  loginUsers.get(session));
+            System.out.println((++i) + ". ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : " +  loginUsers.get(session));
         }
         System.out.println("===========================================");
      }
      
     /*
-     * ÇöÀç Á¢¼ÓÁßÀÎ ¸ðµç »ç¿ëÀÚ¸®½ºÆ®¸¦ ¸®ÅÏ
+     * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
      * @return list
      */
     public Collection getUsers(){

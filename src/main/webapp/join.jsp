@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Login</title>
-<style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SignUp</title>
+<style type="text/css">
 * {
    margin: 0;
    padding: 0;
@@ -32,14 +32,13 @@ a {
 
 .login {
    width: 500px;
-   height: 90%;
+   height: 100%;
    background: white;
    border-radius: 20px;
    display: flex;
    justify-content: center;
    align-items: center;
    flex-direction: column;
-   margin-top: 30px;
 }
 
 h2 {
@@ -119,7 +118,7 @@ h2 {
 }
 
 .submit {
-   margin-top: 20px;
+   margin-top: 50px;
    width: 80%;
 }
 
@@ -158,48 +157,27 @@ h2 {
 input {
    cursor: pointer;
 }
-
-.select {
-   margin-top: 10px;
-   margin-bottom: 10px;
-   width: 100%;
-   text-align: center;
-}
-
-#region {
-   margin-top: 10px;
-   width: 80%;
-   height: 50px;
-   border-radius: 30px;
-   border: 1px solid lightgray;
-   padding: 10px 20px 10px 20px;
-}
 </style>
-</style>
+
 </head>
+
 
 <body>
    <div class="wrap">
-      <form method="post" action="insert">
+      <form method="post" action="joinCheck.jsp">
          <div class="login">
             <h2 class="title">회원가입</h2>
             <div class="login_id">
-               <h4>Name</h4>
-               <input type="text" name="name" id="name" placeholder="본인의 이름을 입력해주세요">
+               <h4>NAME</h4>
+               <input type="text" name="name" id="name" placeholder="사용하실 이름을 입력해주세요">
             </div>
-            <div class="login_pw">
+            <div class="login_id">
                <h4>ID</h4>
                <input type="text" name="id" id="id" placeholder="사용하실 아이디를 입력해주세요">
             </div>
             <div class="login_pw">
                <h4>Password</h4>
-               <input type="password" name="pwd" id="pwd"
-                  placeholder="비밀번호를 입력해주세요">
-            </div>
-            <div class="login_pw">
-               <h4>Check Password</h4>
-               <input type="password" name="pwdck" id="pwdck"
-                  placeholder="비밀번호를 확인해주세요">
+               <input type="password" name="pwd" id="pwd" placeholder="비밀번호를 입력해주세요">
             </div>
             <input type="reset" value="초기화" class="reset" />
 
@@ -207,7 +185,7 @@ input {
                <input type="submit" value="submit">
             </div>
             <div class="back">
-               <a href='index.html'>메인페이지로 이동</a>
+               <a href='index.jsp'>메인페이지로 이동</a>
             </div>
          </div>
       </form>
