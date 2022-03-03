@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Login</title>
 </head>
+
 <body>
 	<form action="loginCheck.jsp" method="post">
 		<label>ID: </label> <input name="id" type="text"><br> 
@@ -13,4 +14,5 @@
 		<input type="submit" value="로그인">
 	</form>
 </body>
+
 </html>

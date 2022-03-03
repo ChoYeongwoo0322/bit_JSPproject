@@ -1,3 +1,7 @@
+<%@page import="java.io.IOException"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Driver"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import = "java.util.Objects" %>
@@ -10,164 +14,200 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Main</title>
+<title>Insert title here</title>
 <style>
-* {
-	margin: 0;
-	padding: 0;
-	font-family: 'lato';
-	list-style: none;
-	text-decoration: none;
-}
-
 body {
-	background-color: linear-gradient(to bottom, #e66465, #9198e5);
+	/* background: linear-gradient(#e66465, #9198e5); */
+	
 }
 
 .wrapper {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	width: 100%;
+	padding: 0 2rem;
+	text-align: center;
 }
 
-.mainMenu {
-	width: 250px;
-	display: block;
-	border-radius: 10px;
-	overflow: hidden;
+.polaroid {
+	background: #fff;
+	padding: 1rem;
+	box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.caption {
+	font-size: 1.125rem;
+	text-align: center;
+	line-height: 2em;
 }
 
 .item {
-	border-top: 1px solid #6667AB;
-	overflow: hidden;
+	display: inline-block;
+	margin-top: 2rem;
+	filter: grayscale(100%);
 }
 
-.btn {
-	display: block;
-	padding: 15px 20px;
-	background-color: #6667AB;
-	color: #fff;
-	position: relative;
-}
-
-.btn:before {
-	content: '';
+.item .polaroid:before {
+	content: "";
 	position: absolute;
-	width: 0;
-	height: 0;
-	border-left: 8px solid transparent;
-	border-right: 8px solid transparent;
-	border-top: 10px solid #6667AB;
-	right: 15px;
-	bottom: -10px;
-	z-index: 9;
+	z-index: -1;
+	transition: all 0.35s;
 }
 
-.btn i {
-	margin-right: 10px;
+.item:nth-of-type(4n+1) {
+	transform: scale(0.8, 0.8) rotate(5deg);
+	transition: all 0.35s;
 }
 
-.subMenu {
-	background: #273057;
-	overflow: hidden;
-	transition: max-height 0.7s;
-	max-height: 0;
+.item:nth-of-type(4n+1) .polaroid:before {
+	transform: rotate(6deg);
+	height: 20%;
+	width: 47%;
+	bottom: 30px;
+	right: 12px;
+	box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.4);
 }
 
-.subMenu a {
-	display: block;
-	padding: 15px 20px;
-	color: #fff;
-	font-size: 14px;
-	border-bottom: 1px solid #394c7f;
-	position: relative;
+.item:nth-of-type(4n+2) {
+	transform: scale(0.8, 0.8) rotate(-5deg);
+	transition: all 0.35s;
 }
 
-.subMenu a:before {
-	content: '';
-	opacity: 0;
-	transition: opacity 0.3s;
+.item:nth-of-type(4n+2) .polaroid:before {
+	transform: rotate(-6deg);
+	height: 20%;
+	width: 47%;
+	bottom: 30px;
+	left: 12px;
+	box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.4);
 }
 
-.subMenu a:hover:before {
-	content: '';
+.item:nth-of-type(4n+4) {
+	transform: scale(0.8, 0.8) rotate(3deg);
+	transition: all 0.35s;
+}
+
+.item:nth-of-type(4n+4) .polaroid:before {
+	transform: rotate(4deg);
+	height: 20%;
+	width: 47%;
+	bottom: 30px;
+	right: 12px;
+	box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.3);
+}
+
+.item:nth-of-type(4n+3) {
+	transform: scale(0.8, 0.8) rotate(-3deg);
+	transition: all 0.35s;
+}
+
+.item:nth-of-type(4n+3) .polaroid:before {
+	transform: rotate(-4deg);
+	height: 20%;
+	width: 47%;
+	bottom: 30px;
+	left: 12px;
+	box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.3);
+}
+
+.item:hover {
+	filter: none;
+	transform: scale(1, 1) rotate(0deg) !important;
+	transition: all 0.35s;
+}
+
+.item:hover .polaroid:before {
+	content: "";
 	position: absolute;
-	height: 0;
-	width: 6px;
-	left: 0;
-	top: 0;
-	opacity: 1;
-	border-top: 24px solid transparent;
-	border-left: 11px solid #fcdc29;
-	border-bottom: 24px solid transparent;
+	z-index: -1;
+	transform: rotate(0deg);
+	height: 90%;
+	width: 90%;
+	bottom: 0%;
+	right: 5%;
+	box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+	transition: all 0.35s;
 }
 
-.subMenu a:after {
-	content: '';
-	opacity: 0;
-	transition: opacity 0.3s;
+.indextitle {
+	text-align: center;
 }
 
-.subMenu a:hover:after {
-	content: '';
-	position: absolute;
-	height: 0;
-	width: 6px;
-	right: 0px;
-	top: 0;
-	opacity: 1;
-	border-top: 24px solid transparent;
-	border-right: 11px solid #fcdc29;
-	border-bottom: 24px solid transparent;
-}
-
-.subMenu a:last-child {
-	border: none;
-}
-
-.item:target .subMenu {
-	max-height: 10em;
+a {
+	text-decoration-line: none;
+	color: black;
 }
 </style>
 </head>
 <body>
-	<div class="wrapper">
-		<ui class="mainMenu">
-		<li class="item" id="home"><a href="#home" class="btn"><i
-				class="fas fa-user-circle"></i>Home</a>
-			<div class="subMenu">
-				<a href="https://www.poscoict.com/servlet/Main?lang=kr">Posco
-					ICT</a> <a
-					href="https://www.posco.co.kr/homepage/docs/kor6/jsp/s91a0000001i.jsp">Posco</a>
-				<a href="http://gorecruit.posco.co.kr/">Posco Recruit</a>
-			</div></li>
-		<li class="item" id="account"><a href="#account" class="btn"><i
-				class="fas fa-address-card"></i>Account</a>
-			<div class="subMenu">
-				<%
-					String userId = request.getParameter("userId");
+	<div class="indextitle">
+        <%
+            String userId = request.getParameter("userId");
 						
-					String check = loginManager.getUserID(session);
-					if(check == null)
-					{
-						out.println("<a href=" + "login.jsp" + ">로그인</a>");
-					}		
-					else{
-						out.println("<a href=" + "logout.jsp" + ">로그아웃</a>");
-					}
-				%>
-				<a href="insert.html">회원가입</a> 
-				<a href="#forgotAccount">계정 찾기</a>
-			</div></li>
-		<li class="item" id="service"><a href="#service" class="btn"><i
-				class="fas fa-info"></i>Service</a>
-			<div class="subMenu">
-				<a href="list.do">회원목록보기</a>
-			</div></li>
-		<li class="item"><a href="#" class="btn"><i
-				class="fas fa-sign-out-alt"></i>Log Out</a></li>
-		</ui>
+            String check = loginManager.getUserID(session);
+            if(check == null){
+            %>
+            <label>
+			    <a href="login.jsp" class=""><h2>로그인</h2></a>
+		    </label>    
+            <%}	
+            else{
+            %>
+            <label>
+			    <a href="#" class=""><h2>로그아웃</h2></a>
+            </label>
+            <%
+            }     
+        %>
+		<label>
+			<a href="vote.jsp" class=""><h2>투표하러가기</h2></a>
+		</label>
+	</div>
+	<div class="wrapper">
+		<div class="item">
+			<div class="polaroid">
+				<Image
+					src="https://s3-ap-northeast-1.amazonaws.com/dcreviewsresized/300_300_20201012114052523_photo_0f71b8e39c09.jpg"
+					width="390" height="220" alt="" />
+				<div class="caption">한돈애</div>
+			</div>
+		</div>
+		<div class="item">
+			<div class="polaroid">
+				<Image src="https://t1.daumcdn.net/cfile/blog/99EA533D5D4B6AC520"
+					width="390" height="220" alt="" />
+				<div class="caption">초선과여포</div>
+			</div>
+		</div>
+		<div class="item">
+			<div class="polaroid">
+				<Image
+					src="http://res.heraldm.com/phpwas/restmb_idxmake.php?idx=507&simg=/content/image/2017/12/20/20171220000900_0.jpg"
+					width="390" height="220" alt="" />
+				<div class="caption">오늘의통닭</div>
+			</div>
+		</div>
+		<div class="item">
+			<div class="polaroid">
+				<Image
+					src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbJBptc%2FbtqBZOcMAkG%2FbLFnAD8z3v3IhBDFymYaCk%2Fimg.jpg"
+					width="390" height="220" alt="" />
+				<div class="caption">하나우동</div>
+			</div>
+		</div>
+		<div class="item">
+			<div class="polaroid">
+				<Image
+					src="https://ai.esmplus.com/foodjang01/images/221400244_b_1.jpg"
+					width="390" height="220" alt="" />
+				<div class="caption">살로만</div>
+			</div>
+		</div>
+		<!-- <div class="item">
+			<div class="polaroid">
+				<Image src="/image/mokomoko.gif" width="390" height="220" alt="" />
+				<div class="caption">굶기</div>
+			</div>
+		</div> -->
+	</div>
 	</div>
 </body>
 </html>
