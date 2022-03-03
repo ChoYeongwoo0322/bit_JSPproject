@@ -25,64 +25,64 @@ table {
 	margin: 0 auto;
 	text-align: center;
 	padding: 10px;
+	border-spacing: 10px;
 }
 
 .tableTitle {
-	font-size: 20px;
+	font-size: 10px;
 	font-weight: bold;
 }
 
-.tableBody {
-	
-}
 </style>
 </head>
-<body>
-	<h1>결과보기</h1>
-	<%
-	Connection con = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
-	PreparedStatement pstmt2 = null;
-	ResultSet rs2 = null;
-
-	Class.forName("com.mysql.jdbc.Driver");
-	String url = "jdbc:mysql://13.209.35.25:3307/db01?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC";
-	con = DriverManager.getConnection(url, "lion", "1234");
-
-	String sql = "select r.res_nm, count(v.res) as count, count(v.res)/count(v.id) as rate from voted v" + " join result r on r.id = v.res"
-			+ " group by v.res";
-	pstmt = con.prepareStatement(sql);
-	rs = pstmt.executeQuery();
-
-	String sql2 = "select count(*) as total from voted";
-	pstmt2 = con.prepareStatement(sql2);
-	rs2 = pstmt2.executeQuery();
-	%>
-	<div>
-		<table>
-			<thead>
-				<tr class="tableTitle">
-					<td>가게명</td>
-					<td>득표수</td>
-					<td>득표율</td>
-				</tr>
-			</thead>
-			<tbody class="tableBody">
-				<%
-				while (rs.next()) {
-					String res_nm = rs.getString("r.res_nm");
-					String count = rs.getString("count");
-					String rate = rs.getString("rate");
-					out.println("<tr>");
-					out.println("<td>" + res_nm + "</td>");
-					out.println("<td>" + count + "</td>");
-					out.println("<td>" + rate + "</td>");
-					out.println("</tr>");
-				}
-				%>
-			</tbody>
-		</table>
-	</div>
-</body>
+	<body>
+		<label>
+			<h1>결과보기</h1>
+		</label>
+		<%
+		 Connection con = null;
+		 PreparedStatement pstmt = null;
+		 ResultSet rs = null;
+		 PreparedStatement pstmt2 = null;
+		 ResultSet rs2 = null;
+		
+		 Class.forName("com.mysql.jdbc.Driver");
+		 String url = "jdbc:mysql://13.209.35.25:3307/db01?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC";
+		 con = DriverManager.getConnection(url, "lion", "1234");
+		
+		 String sql = "select r.res_nm, count(v.res) as count, count(v.res)/count(v.id) as rate from voted v"
+		 		+ " join result r on r.id = v.res" + " group by v.res";
+		 pstmt = con.prepareStatement(sql);
+		 rs = pstmt.executeQuery();
+		
+		 /* String sql2 = "select count(*) as total from voted";
+		 pstmt2 = con.prepareStatement(sql2);
+		 rs2 = pstmt2.executeQuery(); */
+		 %>
+		<div>
+			<label>
+				<table>
+					<thead>
+						<tr class="tableTitle">
+							<td>가게명</td>
+							<td>득표수</td>
+							<!-- <td>득표율</td> -->
+						</tr>
+					</thead>
+					<tbody class="tableBody">
+						<%
+							while (rs.next()) {
+								String res_nm = rs.getString("r.res_nm");
+								String count = rs.getString("count");
+								out.println("<tr>");
+								out.println("<td><h3>" + res_nm + "</h3></td>");
+								out.println("<td><h3>" + count + "</h3></td>");
+								out.println("</tr>");
+							}
+							%>
+					</tbody>
+				</table>
+			</label>
+		</div>
+	</body>
 </html>
