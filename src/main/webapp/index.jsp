@@ -1,9 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Driver"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ page import = "java.util.Objects" %>
 <%@ page import="Pack.LoginManager"%>
 
@@ -152,7 +152,7 @@ a {
             else{
             %>
             <label>
-			    <a href="#" class=""><h2>로그아웃</h2></a>
+			    <a href="logout.jsp" class=""><h2>로그아웃</h2></a>
             </label>
             <%
             }     
