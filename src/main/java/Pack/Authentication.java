@@ -30,4 +30,28 @@ public class Authentication {
 		}
 		return isCheck;
 	}
+	public Boolean addmember(String id, String pwd, String name) {
+		String sql = "insert into user values(null, ?, ?, sysdate(), ?);";
+		try {
+			Connection conn = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwd);
+			pstmt.setString(3, name);
+			int rs = pstmt.executeUpdate();
+
+			if(rs>=1)
+			{
+				return true;
+			}
+
+
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return false;
+
+	}
 }
