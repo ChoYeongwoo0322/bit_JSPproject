@@ -1,9 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Driver"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page import = "java.util.Objects" %>
+<%@ page import="Pack.LoginManager"%>
+
+<%
+	LoginManager loginManager = LoginManager.getInstance(); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -133,12 +139,24 @@ a {
 </head>
 <body>
 	<div class="indextitle">
-		<label>
-			<a href="login.jsp" class=""><h2>로그인</h2></a>
-		</label>
-		<label>
-			<a href="#" class=""><h2>로그아웃</h2></a>
-		</label>
+        <%
+            String userId = request.getParameter("userId");
+						
+            String check = loginManager.getUserID(session);
+            if(check == null){
+            %>
+            <label>
+			    <a href="login.jsp" class=""><h2>로그인</h2></a>
+		    </label>    
+            <%}	
+            else{
+            %>
+            <label>
+			    <a href="logout.jsp" class=""><h2>로그아웃</h2></a>
+            </label>
+            <%
+            }     
+        %>
 		<label>
 			<a href="vote.jsp" class=""><h2>투표하러가기</h2></a>
 		</label>
