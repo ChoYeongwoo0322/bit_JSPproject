@@ -74,7 +74,6 @@ public class LoginManager implements HttpSessionBindingListener{
       * @return boolean ID/PW가 일치하는 지 여부
       */
      public boolean isValid(String userId, String userPw){
-         
         Authentication at = new Authentication();
          return at.isMember(userId, userPw);
      }

@@ -10,8 +10,6 @@
 <body>
 	<%
 	request.setCharacterEncoding("UTF-8");
-	%>
-	<%
 	String selectTime = request.getParameter("voting-time");
 	System.out.println(selectTime);
 	Authentication aut = new Authentication();
