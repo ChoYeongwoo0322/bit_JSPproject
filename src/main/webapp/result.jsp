@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
@@ -5,6 +6,8 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="Pack.Authentication" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,6 +135,11 @@ table {
 </style>
 </head>
 <body>
+	<%
+	Authentication aut = new Authentication();
+	ResultSet rs = aut.getResult();
+	int allCount = aut.allCount();
+	%>
 	<div class="screen">
 		<label>
 			<h1>결과보기</h1>
