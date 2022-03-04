@@ -13,7 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% request.setCharacterEncoding("utf-8");%>
+<% request.setCharacterEncoding("UTF-8");%>
 	<% 
 	String choice = request.getParameter("res_nm");
 	String check = loginManager.getUserID(session);
@@ -22,20 +22,25 @@
 	int idx = aut.getUserIdx(check);
 	
 	Boolean voteCheck = aut.isVoted(idx);
-	
-	if(voteCheck){
+	if(check == null){
 		out.println ("<html><body><script>");
-		out.println ("alert('이미 투표를 하셨습니다.'); history.go(-2)</script></body></html>");
-		return;
-	}else {
-		if(aut.setVoted(idx, choice)){
+		out.println ("alert('로그인을 하세요');location.href=\"login.jsp\";</script></body></html>");
+	} else {
+		if(voteCheck){
 			out.println ("<html><body><script>");
-			out.println ("alert('투표완료!'); location.href=\"result.jsp\";</script></body></html>");
-		}else{
-			out.println ("<html><body><script>");
-			out.println ("alert('투표실패'); location.href=\"index.jsp\";</script></body></html>");
+			out.println ("alert('이미 투표를 하셨습니다.'); history.go(-2)</script></body></html>");
+			return;
+		}else {
+			if(aut.setVoted(idx, choice)){
+				out.println ("<html><body><script>");
+				out.println ("alert('투표완료!'); location.href=\"result.jsp\";</script></body></html>");
+			}else{
+				out.println ("<html><body><script>");
+				out.println ("alert('투표실패'); location.href=\"index.jsp\";</script></body></html>");
+			}
 		}
 	}
+
 	%>
 </body>
 </html>
