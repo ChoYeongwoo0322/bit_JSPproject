@@ -6,6 +6,7 @@
 <%@page import="java.sql.Driver"%>
 <%@ page import="java.util.Objects"%>
 <%@ page import="Pack.LoginManager"%>
+<%@page import="Pack.Authentication" %>
 
 <%
 LoginManager loginManager = LoginManager.getInstance();
@@ -171,8 +172,10 @@ a {
 		}
 		document.onkeydown = doNotReload;
 	</script>
+	
 	<%
 	String sessionCheck = loginManager.getUserID(session);
+
 	%>
 	<div class="indextitle">
 		<%
@@ -186,9 +189,16 @@ a {
 		</span>
 		<%
 		} else {
+			Authentication aut = new Authentication();
+			int idx = aut.getUserIdx(sessionCheck);
+
+			Boolean adminCheck = aut.isAdmin(idx);
 		%>
 		<span> <a href="logout.jsp" class="">로그아웃</a>&nbsp;
 		</span>
+		<% if(adminCheck) {%>
+		<span> <a href="admin.jsp" class="">시간설정(관리자)</a></span>
+		 <%}%>
 		<%
 		}
 		%>
@@ -206,7 +216,7 @@ a {
 		%>
 		<span> <a href="result.jsp" class="">투표결과보기</a>
 		</span>
-		<span> <a href="admin.jsp" class="">시간설정(관리자)</a></span>
+		
 	</div>
 	<div class="wrapper">
 		<div class="item">
