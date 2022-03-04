@@ -34,7 +34,7 @@
 		pstmt.setInt(1, rs.getInt(1));
 		pstmt.setInt(2, Integer.parseInt(choice));
 		pstmt.executeUpdate();
-		out.println("voted 테이블에 추가되었습니다.");
+		out.println("투표완료!");
 	}catch(ClassNotFoundException ce){
 		System.out.println(ce.getMessage());
 	}catch(SQLException se){
