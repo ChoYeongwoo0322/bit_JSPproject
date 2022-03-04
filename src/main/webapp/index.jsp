@@ -4,11 +4,11 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Driver"%>
-<%@ page import = "java.util.Objects" %>
+<%@ page import="java.util.Objects"%>
 <%@ page import="Pack.LoginManager"%>
 
 <%
-	LoginManager loginManager = LoginManager.getInstance(); 
+LoginManager loginManager = LoginManager.getInstance();
 %>
 <!DOCTYPE html>
 <html>
@@ -16,6 +16,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap')
+	;
+
 body {
 	/* background: linear-gradient(#e66465, #9198e5); */
 	
@@ -135,34 +138,64 @@ a {
 	text-decoration-line: none;
 	color: black;
 }
+
+.title {
+	font-size: 20px;
+	font-family: 'Jua', sans-serif;
+	margin: 8px;
+}
 </style>
 </head>
 <body>
+	<script>
+		function doNotReload() {
+			if ((event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82))
+					|| (event.keyCode == 116)) {
+				event.keyCode = 0;
+				event.cancelBubble = true;
+				event.returnValue = false;
+			}
+		}
+		document.onkeydown = doNotReload;
+	</script>
 	<div class="indextitle">
-        <%
-            String userId = request.getParameter("userId");
-						
-            String check = loginManager.getUserID(session);
-            if(check == null){
-            %>
-            <label>
-			    <a href="login.jsp" class=""><h2>로그인</h2></a>
-		    </label>    
-            <%}	
-            else{
-            %>
-            <label>
-			    <a href="logout.jsp" class=""><h2>로그아웃</h2></a>
-            </label>
-            <%
-            }     
-        %>
-		<label>
-			<a href="vote.jsp" class=""><h2>투표하러가기</h2></a>
-		</label>
-		<label>
-			<a href="join.jsp" class=""><h2>회원가입</h2></a>
-		</label>
+		<%
+		String userId = request.getParameter("userId");
+
+		String check = loginManager.getUserID(session);
+		if (check == null) {
+		%>
+		<div>
+			<p>
+				<a href="login.jsp" class="">로그인</a>
+			</p>
+		</div>
+		<div>
+			<p>
+				<a href="join.jsp" class=""><h2>회원가입</h2></a>
+			</p>
+		</div>
+		<%
+		} else {
+		%>
+		<div>
+			<p>
+				<a href="logout.jsp" class=""><h2>로그아웃</h2></a>
+			</p>
+		</div>
+		<%
+		}
+		%>
+		<div>
+			<p>
+				<a href="vote.jsp" class=""><h2>투표하러가기</h2></a>
+			</p>
+		</div>
+		<div>
+			<p>
+				<a href="result.jsp" class=""><h2>투표결과보기</h2></a>
+			</p>
+		</div>
 	</div>
 	<div class="wrapper">
 		<div class="item">
