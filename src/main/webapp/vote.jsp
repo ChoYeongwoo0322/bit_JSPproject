@@ -249,6 +249,5 @@ button:hover .button-text {
 			class="icon arrow"></span>
 		</span> <span class="button-text">Main</span>
 	</button>
-
 </body>
 </html>
