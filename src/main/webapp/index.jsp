@@ -4,11 +4,11 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Driver"%>
-<%@ page import = "java.util.Objects" %>
+<%@ page import="java.util.Objects"%>
 <%@ page import="Pack.LoginManager"%>
 
 <%
-	LoginManager loginManager = LoginManager.getInstance(); 
+LoginManager loginManager = LoginManager.getInstance();
 %>
 <!DOCTYPE html>
 <html>
@@ -16,6 +16,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap')
+	;
+
 body {
 	/* background: linear-gradient(#e66465, #9198e5); */
 	
@@ -134,6 +137,12 @@ body {
 a {
 	text-decoration-line: none;
 	color: black;
+}
+
+.title {
+	font-size: 20px;
+	font-family: 'Jua', sans-serif;
+	margin: 8px;
 }
 </style>
 </head>
