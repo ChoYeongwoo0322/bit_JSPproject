@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="Pack.LoginManager"%>
 <%@page import="Pack.Authentication" %>
@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -22,20 +22,25 @@
 	int idx = aut.getUserIdx(check);
 	
 	Boolean voteCheck = aut.isVoted(idx);
-	
-	if(voteCheck){
+	if(check == null){
 		out.println ("<html><body><script>");
-		out.println ("alert('ÀÌ¹Ì ÅõÇ¥¸¦ ÇÏ¼Ì½À´Ï´Ù.'); history.go(-2)</script></body></html>");
-		return;
-	}else {
-		if(aut.setVoted(idx, choice)){
+		out.println ("alert('ë¡œê·¸ì¸ì„ í•˜ì„¸ìš”');location.href=\"login.jsp\";</script></body></html>");
+	} else {
+		if(voteCheck){
 			out.println ("<html><body><script>");
-			out.println ("alert('ÅõÇ¥¿Ï·á!'); location.href=\"result.jsp\";</script></body></html>");
-		}else{
-			out.println ("<html><body><script>");
-			out.println ("alert('ÅõÇ¥½ÇÆĞ'); location.href=\"index.jsp\";</script></body></html>");
+			out.println ("alert('ì´ë¯¸ íˆ¬í‘œë¥¼ í•˜ì…¨ìŠµë‹ˆë‹¤.'); history.go(-2)</script></body></html>");
+			return;
+		}else {
+			if(aut.setVoted(idx, choice)){
+				out.println ("<html><body><script>");
+				out.println ("alert('íˆ¬í‘œì™„ë£Œ!'); location.href=\"result.jsp\";</script></body></html>");
+			}else{
+				out.println ("<html><body><script>");
+				out.println ("alert('íˆ¬í‘œì‹¤íŒ¨'); location.href=\"index.jsp\";</script></body></html>");
+			}
 		}
 	}
+
 	%>
 </body>
 </html>

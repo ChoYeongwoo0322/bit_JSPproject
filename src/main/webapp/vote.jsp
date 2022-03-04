@@ -3,6 +3,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.Date" %>
 <%@page import="java.util.Calendar"%>
+<%@ page import="Pack.LoginManager"%>
 
 <!DOCTYPE html>
 <html>
@@ -38,7 +39,7 @@
 		</div>
 		<div>
 			<input type="radio" id="tong" name="res_nm" value="3"> <label
-				for="tong">오늘의 통닭</label>
+				for="tong">오늘통닭</label>
 		</div>
 		<div>
 			<input type="radio" id="tong" name="res_nm" value="4"> <label
@@ -46,7 +47,7 @@
 		</div>
 		<div>
 			<input type="radio" id="sal" name="res_nm" value="5"> <label
-				for="sal">살로만</label>
+				for="sal">화돈</label>
 		</div>
 		<%if(currentTime - tmpTime > 0 ){ %>
 		<div>

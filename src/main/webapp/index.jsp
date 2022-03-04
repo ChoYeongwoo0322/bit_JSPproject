@@ -19,9 +19,12 @@ LoginManager loginManager = LoginManager.getInstance();
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap')
 	;
 
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap')
+	;
+
 body {
 	/* background: linear-gradient(#e66465, #9198e5); */
-	
+	font-family: 'Jua', sans-serif;
 }
 
 .wrapper {
@@ -158,6 +161,8 @@ a {
 		}
 		document.onkeydown = doNotReload;
 	</script>
+	<%	String sessionCheck = loginManager.getUserID(session);
+	System.out.print(sessionCheck); %>
 	<div class="indextitle">
 		<%
 		String userId = request.getParameter("userId");
@@ -165,37 +170,37 @@ a {
 		String check = loginManager.getUserID(session);
 		if (check == null) {
 		%>
-		<div>
-			<p>
-				<a href="login.jsp" class="">로그인</a>
-			</p>
-		</div>
-		<div>
-			<p>
-				<a href="join.jsp" class=""><h2>회원가입</h2></a>
-			</p>
-		</div>
+		<span>
+			<a href="login.jsp" class="">로그인</a>&nbsp;
+		</span>
+		<span>
+			<a href="join.jsp" class="">회원가입</a>&nbsp;
+		</span>
 		<%
 		} else {
 		%>
-		<div>
-			<p>
-				<a href="logout.jsp" class=""><h2>로그아웃</h2></a>
-			</p>
-		</div>
+		<span>
+			<a href="logout.jsp" class="">로그아웃</a>&nbsp;
+		</span>
 		<%
 		}
 		%>
-		<div>
-			<p>
-				<a href="vote.jsp" class=""><h2>투표하러가기</h2></a>
-			</p>
-		</div>
-		<div>
-			<p>
-				<a href="result.jsp" class=""><h2>투표결과보기</h2></a>
-			</p>
-		</div>
+		<%
+		if (sessionCheck == null) {
+		%>
+		<span></span>
+	<%
+		} else {
+		%>
+		<span>
+				<a href="vote.jsp" class="">투표하러가기</a>
+		</span>
+		<%
+		}
+		%>
+		<span>
+				<a href="result.jsp" class="">투표결과보기</a>
+		</span>
 	</div>
 	<div class="wrapper">
 		<div class="item">
