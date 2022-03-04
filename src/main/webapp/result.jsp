@@ -6,29 +6,37 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="Pack.Authentication" %>
+<%@page import="Pack.Authentication"%>
 
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="chart.css">
+<link rel="stylesheet"
+	href="https://cdn.rawgit.com/theus/chart.css/v1.0.0/dist/chart.css" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-:root {
-
-}
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
 body {
 	/* background: linear-gradient(#ffffff, #9198e5); */
 	height: 100vh;
 	padding: 0;
+	font-family: 'Jua', sans-serif;
 }
+
+
 
 h1 {
+
+	
+	margin: 0;
 	text-align: center;
+	
 }
 
-div {
+.btns {
 	text-align: center;
 }
 
@@ -65,8 +73,9 @@ table {
 
 /* 요기부터 그래프 관련 */
 #idea_poll_table .graph_yl {
-	width:300px; /* padding으로 전체 1px 밀었으므로 가로사이즈 왼쪽, 오른쪽 각각 1px 씩 뺀 사이즈 */
-	height: 7px; /* padding으로 전체 1px 밀었으므로 세로 사이즈 위, 아래 각각 1px 씩 뺀 사이즈 */
+	width: 300px;
+	height: 7px;
+	/* padding으로 전체 1px 밀었으므로 세로 사이즈 위, 아래 각각 1px 씩 뺀 사이즈 */
 	background-image: url(../../nsquare/image/idea_poll_graph_yl_off.gif);
 	/* 그래프의 테두리만 남기고 투명 Gif 로 저장 */
 	background-repeat: no-repeat; /* 테두리가 반복되면 안되므로 배경 고정 */
@@ -75,7 +84,8 @@ table {
 	margin: 0px;
 	/* IE6 과 IE7의 padding 인식 차이를 맞추기 위한 margin 지정 // 이미 body에 지정되어 있으나 다시 지정 */
 	padding: 1px; /* 그래프의 테두리 안쪽으로 on 이미지가 늘어나야 하므로 전체 1px padding */
-	text-align: left; /* 그래프의 시작은 항상 왼쪽부터 */
+	text-align: left;
+	height: 7px; /* 그래프의 시작은 항상 왼쪽부터 */
 }
 
 #idea_poll_table .bold_yl {
@@ -108,6 +118,7 @@ table {
 	background-color: white;
 	color: black;
 	border: 2px solid #4CAF50;
+	font-family: 'Jua', sans-serif;
 }
 
 .button1:hover {
@@ -116,46 +127,54 @@ table {
 }
 
 .screen {
-	margin-top: 200px;
+	margin-top: 100px;
 }
 
 .backtoMain {
 	text-decoration-line: none;
 	color: black;
 }
+
+.seconddiv {
+	width: 500px;
+}
+
+
 </style>
 </head>
 <body>
-	<h1>결과보기</h1>
-	<%
-	Authentication aut = new Authentication();
-	ResultSet rs = aut.getResult();
-	int allCount = aut.allCount();
-	%>
-	<div>
-		<table>
-			<thead>
-				<tr class="tableTitle">
-					<td>가게명</td>
-					<td>득표수</td>
-					<td>득표율</td>
-				</tr>
-			</thead>
-			<tbody class="tableBody">
-				<%
-				while (rs.next()) {
-					String res_nm = rs.getString("r.res_nm");
-					String count = rs.getString("count");
-					String rate = rs.getString("rate");
-					out.println("<tr>");
-					out.println("<td>" + res_nm + "</td>");
-					out.println("<td>" + count + "</td>");
-					out.println("<td>" + rate + "</td>");
-					out.println("</tr>");
-				}
-				%>
-			</tbody>
-		</table>
+	<div class="screen">
+		<h1>결과보기</h1>
+		<%
+		Authentication aut = new Authentication();
+		ResultSet rs = aut.getResult();
+		int allCount = aut.allCount();
+		%>
+
+		<div class="charts" style="margin-left: 200px;">
+			<p>
+				투표 참여 인원 :
+				<%=allCount%>
+				명
+			</p>
+			<%
+			while (rs.next()) {
+				String res_nm = rs.getString("r.res_nm");
+				String count = rs.getString("count");
+				double rate = (((double) Integer.parseInt(count) / allCount));
+				int rateValue = (int) Math.round(rate * 100);
+				out.println("<span>" + res_nm + "(" + count + "명" + ")" + "</span>");
+				out.println("<div class=\"charts__chart chart--blue chart--p" + rateValue + "\" + data-percent></div>");
+			}
+			%>
+		</div>
+
+		<div class="btns">
+			<a href="result.jsp"><button class="button button1">reload</button></a><br>
+			<a href="index.jsp" class="backtoMain">메인페이지로 돌아가기</a>
+		</div>
+
 	</div>
+
 </body>
 </html>

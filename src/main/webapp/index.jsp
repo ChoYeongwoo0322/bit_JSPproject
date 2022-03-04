@@ -19,9 +19,22 @@ LoginManager loginManager = LoginManager.getInstance();
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap')
 	;
 
-body {
-	/* background: linear-gradient(#e66465, #9198e5); */
+* {
 	
+}
+
+html {
+	background:
+		url(https://mblogthumb-phinf.pstatic.net/20141001_67/aibb1233_14121517107871hhG8_JPEG/3.jpg?type=w2)
+		no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+body {
+	font-family: 'Jua', sans-serif;
 }
 
 .wrapper {
@@ -147,46 +160,53 @@ a {
 </style>
 </head>
 <body>
-<script>
-function doNotReload(){
-    if(    (event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82))
-        || (event.keyCode == 116) )
-    {
-      event.keyCode = 0;
-      event.cancelBubble = true;
-      event.returnValue = false;
-    }
-}
-document.onkeydown = doNotReload;
-</script>
+	<script>
+		function doNotReload() {
+			if ((event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82))
+					|| (event.keyCode == 116)) {
+				event.keyCode = 0;
+				event.cancelBubble = true;
+				event.returnValue = false;
+			}
+		}
+		document.onkeydown = doNotReload;
+	</script>
+	<%
+	String sessionCheck = loginManager.getUserID(session);
+	System.out.print(sessionCheck);
+	%>
 	<div class="indextitle">
-        <%
-            String userId = request.getParameter("userId");
-						
-            String check = loginManager.getUserID(session);
-            if(check == null){
-            %>
-            <div>
-            	<p><a href="login.jsp" class="">로그인</a></p>
-		    </div>    
-            <%}	
-            else{
-            %>
-            <label>
-			    <a href="logout.jsp" class=""><h2>로그아웃</h2></a>
-            </label>
-            <%
-            }     
-        %>
-		<label>
-			<a href="vote.jsp" class=""><h2>투표하러가기</h2></a>
-		</label>
-		<label>
-			<a href="result.jsp" class=""><h2>투표결과보기</h2></a>
-		</label>
-		<label>
-			<a href="join.jsp" class=""><h2>회원가입</h2></a>
-		</label>
+		<%
+		String userId = request.getParameter("userId");
+
+		String check = loginManager.getUserID(session);
+		if (check == null) {
+		%>
+		<span> <a href="login.jsp" class="">로그인</a>&nbsp;
+		</span> <span> <a href="join.jsp" class="">회원가입</a>&nbsp;
+		</span>
+		<%
+		} else {
+		%>
+		<span> <a href="logout.jsp" class="">로그아웃</a>&nbsp;
+		</span>
+		<%
+		}
+		%>
+		<%
+		if (sessionCheck == null) {
+		%>
+		<span></span>
+		<%
+		} else {
+		%>
+		<span> <a href="vote.jsp" class="">투표하러가기</a>
+		</span>
+		<%
+		}
+		%>
+		<span> <a href="result.jsp" class="">투표결과보기</a>
+		</span>
 	</div>
 	<div class="wrapper">
 		<div class="item">
