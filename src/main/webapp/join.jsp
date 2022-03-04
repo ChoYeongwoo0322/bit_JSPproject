@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SignUp</title>
 <style type="text/css">
+
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
 * {
    margin: 0;
    padding: 0;
@@ -16,18 +19,22 @@
 a {
    text-decoration: none;
    color: black;
+   font-family: 'Jua', sans-serif;
 }
+
 
 /* li {
    list-style: none;
 } */
 .wrap {
+	margin-top: 30px;
    width: 100%;
    height: 100%;
    display: flex;
    align-items: center;
    justify-content: center;
    background: rgba(0, 0, 0, 0);
+      
 }
 
 .login {
@@ -39,11 +46,17 @@ a {
    justify-content: center;
    align-items: center;
    flex-direction: column;
+    border: 2px solid #6667AB;
 }
 
 h2 {
    color: #6667AB;
    font-size: 2em;
+   font-family: 'Jua', sans-serif;
+}
+
+h4 {
+   font-family: 'Jua', sans-serif;
 }
 
 .title {
@@ -118,34 +131,33 @@ h2 {
 }
 
 .submit {
-   margin-top: 50px;
+   margin-top: 15px;
    width: 80%;
 }
 
 .submit input {
    width: 100%;
    height: 50px;
-   border: 0;
-   outline: none;
    border-radius: 40px;
-   background: linear-gradient(to left, white, #6667AB);
-   color: white;
-   font-size: 1.2em;
-   letter-spacing: 2px;
+    font-size: 1.2em;
+     border: 2px solid black;
 }
 
-.back {
-   margin: 10px;
+.submit input:hover {
+	background-color: #6667AB;
+   color: white;
 }
+
+
 
 .reset {
    background-color: white;
    color: black;
-   border: 2px solid #f44336;
+   border: 4px solid black;
    border-radius: 30px;
    margin-top: 10px;
    padding: 10px 10px;
-   border: 1px solid lightgray;
+  border: 2px solid black;
    outline: none;
 }
 
@@ -156,7 +168,29 @@ h2 {
 
 input {
    cursor: pointer;
+   font-family: 'Jua', sans-serif;
 }
+
+div {
+   font-family: 'Jua', sans-serif;
+}
+
+.back{
+  	margin: 15px;
+	background-color: white;
+   color: black;
+   border: 2px solid black;
+   border-radius: 30px;
+   margin-top: 10px;
+   padding: 10px 10px;
+   outline: none;
+}
+
+.back:hover {
+	background-color: #6667AB;
+   color: white;
+}
+
 </style>
 
 </head>
@@ -185,7 +219,7 @@ input {
                <input type="submit" value="submit">
             </div>
             <div class="back">
-               <a href='index.jsp'>메인페이지로 이동</a>
+               <a href='index.jsp' data-rel="pop">메인페이지로 이동</a>
             </div>
          </div>
       </form>
