@@ -136,9 +136,7 @@ table {
 </head>
 <body>
 	<div class="screen">
-		<label>
-			<h1>결과보기</h1>
-		</label>
+		<h1>결과보기</h1>
 		<%
 		Authentication aut = new Authentication();
 		ResultSet rs = aut.getResult();
@@ -146,13 +144,17 @@ table {
 		%>
 
 		<div class="charts" style="margin-left: 200px;">
-			<p>투표 참여 인원  : <%= allCount %> 명</p>
+			<p>
+				투표 참여 인원 :
+				<%=allCount%>
+				명
+			</p>
 			<%
 			while (rs.next()) {
 				String res_nm = rs.getString("r.res_nm");
 				String count = rs.getString("count");
-				double rate = (((double)Integer.parseInt(count)/allCount));
-				int rateValue = (int) Math.round(rate*100);
+				double rate = (((double) Integer.parseInt(count) / allCount));
+				int rateValue = (int) Math.round(rate * 100);
 				out.println("<span>" + res_nm + "(" + count + "명" + ")" + "</span>");
 				out.println("<div class=\"charts__chart chart--blue chart--p" + rateValue + "\" + data-percent></div>");
 			}
