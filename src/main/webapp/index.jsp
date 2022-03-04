@@ -193,7 +193,7 @@ a {
 		} else {
 		%>
 		<span>
-				<a href="vote.jsp" class=""><투표하러가기</a>
+				<a href="vote.jsp" class="">투표하러가기</a>
 		</span>
 		<%
 		}
