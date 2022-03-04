@@ -182,11 +182,6 @@ button:hover .button-text {
 <body>
 
 	<%
-	Calendar c = Calendar.getInstance();
-	int hour = c.get(Calendar.HOUR_OF_DAY);
-	int minute = c.get(Calendar.MINUTE);
-	int second = c.get(Calendar.SECOND);
-
 	Calendar cal = Calendar.getInstance();
 	long currentTime = cal.getTimeInMillis();
 	%>
@@ -201,13 +196,9 @@ button:hover .button-text {
 		cal.set(Integer.parseInt(dueYear), Integer.parseInt(dueMonth)-1, Integer.parseInt(dueDate), Integer.parseInt(dueHour), Integer.parseInt(dueMinute));
 		long tmpTime = cal.getTimeInMillis();
 	%>
-	<h3><%= dueYear %>년<%= dueMonth %>월<%= dueDate %>일<%= dueHour %>시<%= dueMinute %>분 까지 투표가능</h3>
-		지금 막
-	<%=hour%>시
-	<%=minute%>분
-	<%=second%>초를 지나고 있습니다.
-	<h1 id="clock" style="color:black;">clock</h1>
-	
+	<h1><%= dueYear %>년<%= dueMonth %>월<%= dueDate %>일<%= dueHour %>시<%= dueMinute %>분 까지 투표가능</h1>
+	<h2 id="clock" style="color:black;">clock</h2>
+	<script type="text/javascript" src="clock.js?v=<%=System.currentTimeMillis() %>"></script>
 	<form method="post" action="voteOk.jsp">
 		<div class="voteBody">
 			<label class="rad-label"> <input type="radio"
