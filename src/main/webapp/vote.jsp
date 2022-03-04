@@ -198,20 +198,24 @@ button:hover .button-text {
 	<form method="post" action="voteOk.jsp">
 		<div class="voteBody">
 			<label class="rad-label"> <input type="radio"
-				class="rad-input" name="rad" id="han" name="res_nm" value="1"
+				class="rad-input" name="rad" id="han" value="1"
 				checked="checked"> <span class="rad-design"></span> <span
 				class="rad-text">한돈애</span>
-			</label> <label class="rad-label"> <input type="radio"
-				class="rad-input" name="rad" id="cho" name="res_nm" value="2">
+			</label> 
+			<label class="rad-label"> <input type="radio"
+				class="rad-input" name="rad" id="cho" value="2">
 				<span class="rad-design"></span> <span class="rad-text">초선과여포</span>
-			</label> <label class="rad-label"> <input type="radio"
-				class="rad-input" name="rad" id="tong" name="res_nm" value="3">
+			</label> 
+			<label class="rad-label"> <input type="radio"
+				class="rad-input" name="rad" id="tong" value="3">
 				<span class="rad-design"></span> <span class="rad-text">오늘통닭</span>
-			</label> <label class="rad-label"> <input type="radio"
-				class="rad-input" name="rad" id="tong" name="res_nm" value="4">
+			</label> 
+			<label class="rad-label"> <input type="radio"
+				class="rad-input" name="rad" id="tong" value="4">
 				<span class="rad-design"></span> <span class="rad-text">하나우동</span>
-			</label> <label class="rad-label"> <input type="radio"
-				class="rad-input" name="rad" id="sal" name="res_nm" value="5">
+			</label> 
+			<label class="rad-label"> <input type="radio"
+				class="rad-input" name="rad" id="sal" value="5">
 				<span class="rad-design"></span> <span class="rad-text">화돈</span>
 			</label>
 		</div>

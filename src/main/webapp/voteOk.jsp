@@ -15,13 +15,12 @@
 <body>
 <% request.setCharacterEncoding("UTF-8");%>
 	<% 
-	String choice = request.getParameter("res_nm");
+	String choice = request.getParameter("rad");
 	String check = loginManager.getUserID(session);
-
 	Authentication aut = new Authentication();
 	int idx = aut.getUserIdx(check);
-	
 	Boolean voteCheck = aut.isVoted(idx);
+	
 	if(check == null){
 		out.println ("<html><body><script>");
 		out.println ("alert('로그인을 하세요');location.href=\"login.jsp\";</script></body></html>");
