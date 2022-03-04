@@ -177,6 +177,15 @@ a {
 	String sessionCheck = loginManager.getUserID(session);
 
 	%>
+		<%
+		LoginManager lm = new LoginManager();
+		for(int i = 0; i < lm.getUserCount();i++){
+		%>
+				<Image
+					src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw3iIVG5rP3Yie7zj9wBNf32mJBCGNZdtZOA&usqp=CAU"
+					width="30" height="30" alt="" />
+		
+		<%}%>
 	<div class="indextitle">
 		<%
 		String userId = request.getParameter("userId");
@@ -208,7 +217,7 @@ a {
 		<span></span>
 		<%
 		} else {
-		%>
+		%> 
 		<span> <a href="vote.jsp" class="">투표하러가기</a>
 		</span>
 		<%

@@ -4,7 +4,7 @@
 <%@ page import="java.util.Date"%>
 <%@page import="java.util.Calendar"%>
 <%@ page import="Pack.LoginManager"%>
-<%@page import="Pack.Authentication" %>
+<%@page import="Pack.Authentication"%>
 
 <!DOCTYPE html>
 <html>
@@ -180,13 +180,8 @@ button:hover .button-text {
 </style>
 </head>
 <body>
-	
-	<%
-	Calendar c = Calendar.getInstance();
-	int hour = c.get(Calendar.HOUR_OF_DAY);
-	int minute = c.get(Calendar.MINUTE);
-	int second = c.get(Calendar.SECOND);
 
+	<%
 	Calendar cal = Calendar.getInstance();
 	long currentTime = cal.getTimeInMillis();
 	%>
@@ -201,33 +196,26 @@ button:hover .button-text {
 		cal.set(Integer.parseInt(dueYear), Integer.parseInt(dueMonth)-1, Integer.parseInt(dueDate), Integer.parseInt(dueHour), Integer.parseInt(dueMinute));
 		long tmpTime = cal.getTimeInMillis();
 	%>
-	<h3>투표 종료 시간 <%= voteTime %></h3>
-		현재시간은
-	<%=hour%>시
-	<%=minute%>분
-	<%=second%>초입니다.
+	<h1><%= dueYear %>년<%= dueMonth %>월<%= dueDate %>일<%= dueHour %>시<%= dueMinute %>분 까지 투표가능</h1>
+	<h2 id="clock" style="color:black;">clock</h2>
+	<script type="text/javascript" src="clock.js?v=<%=System.currentTimeMillis() %>"></script>
 	<form method="post" action="voteOk.jsp">
 		<div class="voteBody">
 			<label class="rad-label"> <input type="radio"
-				class="rad-input" name="rad" id="han" value="1"
-				checked="checked"> <span class="rad-design"></span> <span
-				class="rad-text">한돈애</span>
-			</label> 
-			<label class="rad-label"> <input type="radio"
-				class="rad-input" name="rad" id="cho" value="2">
-				<span class="rad-design"></span> <span class="rad-text">초선과여포</span>
-			</label> 
-			<label class="rad-label"> <input type="radio"
-				class="rad-input" name="rad" id="tong" value="3">
-				<span class="rad-design"></span> <span class="rad-text">오늘통닭</span>
-			</label> 
-			<label class="rad-label"> <input type="radio"
-				class="rad-input" name="rad" id="tong" value="4">
-				<span class="rad-design"></span> <span class="rad-text">하나우동</span>
-			</label> 
-			<label class="rad-label"> <input type="radio"
-				class="rad-input" name="rad" id="sal" value="5">
-				<span class="rad-design"></span> <span class="rad-text">화돈</span>
+				class="rad-input" name="rad" id="han" value="1" checked="checked">
+				<span class="rad-design"></span> <span class="rad-text">한돈애</span>
+			</label> <label class="rad-label"> <input type="radio"
+				class="rad-input" name="rad" id="cho" value="2"> <span
+				class="rad-design"></span> <span class="rad-text">초선과여포</span>
+			</label> <label class="rad-label"> <input type="radio"
+				class="rad-input" name="rad" id="tong" value="3"> <span
+				class="rad-design"></span> <span class="rad-text">오늘통닭</span>
+			</label> <label class="rad-label"> <input type="radio"
+				class="rad-input" name="rad" id="tong" value="4"> <span
+				class="rad-design"></span> <span class="rad-text">하나우동</span>
+			</label> <label class="rad-label"> <input type="radio"
+				class="rad-input" name="rad" id="sal" value="5"> <span
+				class="rad-design"></span> <span class="rad-text">화돈</span>
 			</label>
 		</div>
 
@@ -235,19 +223,12 @@ button:hover .button-text {
 		if (currentTime - tmpTime > 0) {
 		%>
 		<div>
-			<!-- <input type="submit" value="투표" disabled> -->
-			<!-- <button class="learn-more">
-				<span class="circle" aria-hidden="true"> <span
-					class="icon arrow"></span>
-				</span> <span class="button-text">투표하기</span>
-			</button> -->
 			<p style="color: red">* 투표가 마감되었습니다 *</p>
 		</div>
 		<%
 		} else {
 		%>
 		<div>
-			<!-- <input type="submit" value="투표"> -->
 			<button class="learn-more">
 				<span class="circle" aria-hidden="true"> <span
 					class="icon arrow"></span>
