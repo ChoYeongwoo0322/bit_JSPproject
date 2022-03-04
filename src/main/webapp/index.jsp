@@ -158,6 +158,8 @@ a {
 		}
 		document.onkeydown = doNotReload;
 	</script>
+	<%	String sessionCheck = loginManager.getUserID(session);
+	System.out.print(sessionCheck); %>
 	<div class="indextitle">
 		<%
 		String userId = request.getParameter("userId");
@@ -186,11 +188,22 @@ a {
 		<%
 		}
 		%>
+		<%
+		if (sessionCheck == null) {
+		%>
+		<div></div>
+		<%
+		} else {
+		%>
 		<div>
 			<p>
 				<a href="vote.jsp" class=""><h2>투표하러가기</h2></a>
 			</p>
 		</div>
+
+		<%
+		}
+		%>
 		<div>
 			<p>
 				<a href="result.jsp" class=""><h2>투표결과보기</h2></a>
