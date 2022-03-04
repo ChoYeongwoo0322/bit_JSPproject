@@ -29,7 +29,7 @@ body {
 
 h1 {
 	margin: 0;
-	text-align: center;
+	text-align: center;	
 }
 
 .btns {

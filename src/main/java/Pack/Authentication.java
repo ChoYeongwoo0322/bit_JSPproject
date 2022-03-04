@@ -31,7 +31,7 @@ public class Authentication {
 	}
 	
 	public Boolean addmember(String id, String pwd, String name) {
-		String sql = "insert into user values(null, ?, ?, sysdate(), ?);";
+		String sql = "insert into user values(null, ?, ?, sysdate(), ?, null);";
 		try {
 			Connection conn = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
