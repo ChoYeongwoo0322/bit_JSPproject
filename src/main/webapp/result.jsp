@@ -12,7 +12,7 @@
 <title>Insert title here</title>
 <style>
 :root {
-	--value: <%= count%>;
+
 }
 
 body {
