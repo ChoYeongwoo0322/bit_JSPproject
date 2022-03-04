@@ -22,13 +22,17 @@ LoginManager loginManager = LoginManager.getInstance();
 * {
 	
 }
-html { 
-  background: url(https://mblogthumb-phinf.pstatic.net/20141001_67/aibb1233_14121517107871hhG8_JPEG/3.jpg?type=w2) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+
+html {
+	background:
+		url(https://mblogthumb-phinf.pstatic.net/20141001_67/aibb1233_14121517107871hhG8_JPEG/3.jpg?type=w2)
+		no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
+
 body {
 	font-family: 'Jua', sans-serif;
 }
@@ -167,8 +171,10 @@ a {
 		}
 		document.onkeydown = doNotReload;
 	</script>
-	<%	String sessionCheck = loginManager.getUserID(session);
-	System.out.print(sessionCheck); %>
+	<%
+	String sessionCheck = loginManager.getUserID(session);
+	System.out.print(sessionCheck);
+	%>
 	<div class="indextitle">
 		<%
 		String userId = request.getParameter("userId");
