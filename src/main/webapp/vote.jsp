@@ -11,12 +11,17 @@
 <title>투표하기</title>
 </head>
 <body>
-	<h3>매일 투표 종료 시간 13:00 P.M</h3>
+	<h3>투표 종료 시간 2022.03.04 18:00 P.M</h3>
 	<%
-	Calendar c = Calendar.getInstance();
+ 	Calendar c = Calendar.getInstance();
 	int hour = c.get(Calendar.HOUR_OF_DAY);
 	int minute = c.get(Calendar.MINUTE);
 	int second = c.get(Calendar.SECOND);
+	
+	Calendar cal = Calendar.getInstance();
+	long currentTime = cal.getTimeInMillis();
+	cal.set(2022, Calendar.MARCH, 4, 18, 0); 
+	long tmpTime = cal.getTimeInMillis();
 	%>
 	현재시간은
 	<%=hour%>시
@@ -43,7 +48,7 @@
 			<input type="radio" id="sal" name="res_nm" value="5"> <label
 				for="sal">살로만</label>
 		</div>
-		<%if(hour>=13){ %>
+		<%if(currentTime - tmpTime > 0 ){ %>
 		<div>
 			<input type="submit" value="투표" disabled>
 		</div>
