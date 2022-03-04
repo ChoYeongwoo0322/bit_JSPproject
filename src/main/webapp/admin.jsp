@@ -21,9 +21,9 @@ Boolean adminCheck = aut.isAdmin(idx);
 System.out.println(adminCheck);
 %>
  <form method="post" action="adminOk.jsp">
-      <input type="datetime-local" id="voting-time"
-       name="voting-time" value="2022-03-04T18:00"
-       min="2022-03-04T00:00" max="2022-08-14T00:00">
+      <input type="time" id="voting-time"
+       name="voting-time" value="18:00"
+       min="00:00" max="23:59">
        <% if(adminCheck) {%>
       <input type="submit" value="Submit">
       <%}else {%>

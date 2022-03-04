@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="java.util.Date"%>
 <%@ page import="Pack.LoginManager"%>
 <%@page import="Pack.Authentication" %>
-<%@page import="java.util.Calendar"%>
+<%@page import="java.time.LocalTime"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Locale"%>
 <%
 	LoginManager loginManager = LoginManager.getInstance(); 
 %>
@@ -14,28 +17,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<% request.setCharacterEncoding("UTF-8");%>
 	<%
-	Calendar cal = Calendar.getInstance();
-	long currentTime = cal.getTimeInMillis();
-	Authentication autt = new Authentication();
-	String voteTime = autt.getVoteTime();
-	String dueYear = voteTime.substring(0, 4);
-	String dueMonth = voteTime.substring(5, 7);
-	String dueDate = voteTime.substring(8, 10);
-	String dueHour = voteTime.substring(11, 13);
-	String dueMinute = voteTime.substring(14, 16);
-	cal.set(Integer.parseInt(dueYear), Integer.parseInt(dueMonth) - 1, Integer.parseInt(dueDate), Integer.parseInt(dueHour),
-			Integer.parseInt(dueMinute));
-	long tmpTime = cal.getTimeInMillis();
-	%>
-	<%
+	request.setCharacterEncoding("UTF-8");
+	Authentication aut = new Authentication();
+
+	LocalTime now = LocalTime.now();
+	String voteTime = aut.getVoteTime();
+	SimpleDateFormat f = new SimpleDateFormat("HH:mm", Locale.KOREA);
+	Date currentTime = f.parse(now.getHour() + ":" + now.getMinute());
+	Date tmpTime = f.parse(voteTime);
+	long diff = currentTime.getTime() - tmpTime.getTime();
+
 	String choice = request.getParameter("rad");
 	String check = loginManager.getUserID(session);
-	Authentication aut = new Authentication();
+
 	int idx = aut.getUserIdx(check);
 	Boolean voteCheck = aut.isVoted(idx);
-	if (currentTime - tmpTime < 0) {
+	if (diff <= 0) {
 		if (check == null) {
 			out.println("<html><body><script>");
 			out.println("alert('로그인을 하세요');location.href=\"login.jsp\";</script></body></html>");
