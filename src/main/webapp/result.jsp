@@ -16,19 +16,24 @@
 	href="https://cdn.rawgit.com/theus/chart.css/v1.0.0/dist/chart.css" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-:root {
-	data-width: 300px;
-}
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
 body {
 	/* background: linear-gradient(#ffffff, #9198e5); */
 	height: 100vh;
 	padding: 0;
+	font-family: 'Jua', sans-serif;
 }
 
+
+
 h1 {
+
+	
+	margin: 0;
 	text-align: center;
+	
 }
 
 .btns {
@@ -113,6 +118,7 @@ table {
 	background-color: white;
 	color: black;
 	border: 2px solid #4CAF50;
+	font-family: 'Jua', sans-serif;
 }
 
 .button1:hover {
@@ -132,6 +138,8 @@ table {
 .seconddiv {
 	width: 500px;
 }
+
+
 </style>
 </head>
 <body>
