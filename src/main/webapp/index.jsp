@@ -173,7 +173,6 @@ a {
 	</script>
 	<%
 	String sessionCheck = loginManager.getUserID(session);
-	System.out.print(sessionCheck);
 	%>
 	<div class="indextitle">
 		<%
