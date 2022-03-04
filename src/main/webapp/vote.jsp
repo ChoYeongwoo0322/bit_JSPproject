@@ -190,8 +190,6 @@ button:hover .button-text {
 	Calendar cal = Calendar.getInstance();
 	long currentTime = cal.getTimeInMillis();
 	%>
-
-	
 	<% request.setCharacterEncoding("UTF-8");%>
 	<% Authentication aut = new Authentication();
 		String voteTime = aut.getVoteTime();
