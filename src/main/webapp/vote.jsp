@@ -201,7 +201,7 @@ button:hover .button-text {
 		cal.set(Integer.parseInt(dueYear), Integer.parseInt(dueMonth)-1, Integer.parseInt(dueDate), Integer.parseInt(dueHour), Integer.parseInt(dueMinute));
 		long tmpTime = cal.getTimeInMillis();
 	%>
-	<h3>투표 종료 시간 <%= voteTime %></h3>
+	<h3>투표 종료 시간 <%= dueYear %>년<%= dueMonth %>월<%= dueDate %>일<%= dueHour %>시<%= dueMinute %>분</h3>
 		현재시간은
 	<%=hour%>시
 	<%=minute%>분
