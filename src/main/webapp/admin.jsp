@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="Pack.LoginManager"%>
 <%@page import="Pack.Authentication" %>
 <%
@@ -8,11 +8,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<h1>½Ã°£ ¼³Á¤ÇÏ±â</h1>
+<h1>ì‹œê°„ ì„¤ì •í•˜ê¸°</h1>
 <% String check = loginManager.getUserID(session);
 Authentication aut = new Authentication();
 int idx = aut.getUserIdx(check);
