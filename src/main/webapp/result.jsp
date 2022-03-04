@@ -166,6 +166,9 @@ button:hover .circle .icon.arrow {
 button:hover .button-text {
 	color: #fff;
 }
+div.charts {
+    font-size: 20px;
+}
 </style>
 </head>
 <body>
