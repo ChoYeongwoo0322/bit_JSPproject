@@ -76,8 +76,7 @@ public class LoginManager implements HttpSessionBindingListener{
      public boolean isValid(String userId, String userPw){
          
     	 Authentication at = new Authentication();
-    	 at.isMember(userId, userPw);
-         return true;
+    	 return at.isMember(userId, userPw);
      }
 
 
