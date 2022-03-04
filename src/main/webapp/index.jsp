@@ -19,11 +19,21 @@ LoginManager loginManager = LoginManager.getInstance();
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap')
 	;
 
-@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap')
-	;
+* {
+	
+}
+
+html {
+	background:
+		url(https://mblogthumb-phinf.pstatic.net/20141001_67/aibb1233_14121517107871hhG8_JPEG/3.jpg?type=w2)
+		no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
 
 body {
-	/* background: linear-gradient(#e66465, #9198e5); */
 	font-family: 'Jua', sans-serif;
 }
 
@@ -161,8 +171,9 @@ a {
 		}
 		document.onkeydown = doNotReload;
 	</script>
-	<%	String sessionCheck = loginManager.getUserID(session);
-	System.out.print(sessionCheck); %>
+	<%
+	String sessionCheck = loginManager.getUserID(session);
+	%>
 	<div class="indextitle">
 		<%
 		String userId = request.getParameter("userId");
@@ -170,17 +181,13 @@ a {
 		String check = loginManager.getUserID(session);
 		if (check == null) {
 		%>
-		<span>
-			<a href="login.jsp" class="">로그인</a>&nbsp;
-		</span>
-		<span>
-			<a href="join.jsp" class="">회원가입</a>&nbsp;
+		<span> <a href="login.jsp" class="">로그인</a>&nbsp;
+		</span> <span> <a href="join.jsp" class="">회원가입</a>&nbsp;
 		</span>
 		<%
 		} else {
 		%>
-		<span>
-			<a href="logout.jsp" class="">로그아웃</a>&nbsp;
+		<span> <a href="logout.jsp" class="">로그아웃</a>&nbsp;
 		</span>
 		<%
 		}
@@ -189,17 +196,15 @@ a {
 		if (sessionCheck == null) {
 		%>
 		<span></span>
-	<%
+		<%
 		} else {
 		%>
-		<span>
-				<a href="vote.jsp" class="">투표하러가기</a>
+		<span> <a href="vote.jsp" class="">투표하러가기</a>
 		</span>
 		<%
 		}
 		%>
-		<span>
-				<a href="result.jsp" class="">투표결과보기</a>
+		<span> <a href="result.jsp" class="">투표결과보기</a>
 		</span>
 	</div>
 	<div class="wrapper">
