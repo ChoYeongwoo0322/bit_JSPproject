@@ -152,4 +152,67 @@ public class Authentication {
 		}
 		return false;
 	}
+	public Boolean setTime(String selectTime) {
+		String sql1 = "DELETE FROM voteTime";
+		String sql =  " insert into voteTime values(null,?)";
+		try {
+			Connection conn = ConnectionProvider.getConnection();
+			PreparedStatement pstmt1 = conn.prepareStatement(sql1);
+			pstmt1.executeUpdate();
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, selectTime);
+			
+			int result = pstmt.executeUpdate();
+
+			if(result == 1)
+			{
+				return true;
+			}
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return false;
+	}
+	public String getVoteTime() {
+		String sql = "select voteTime from voteTime;";
+		try {
+			Connection conn = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next())
+			{
+				return rs.getString(1);
+			}
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+	public Boolean isAdmin(int idx) {
+		Boolean isCheck = null;
+		String sql =  "select isAdmin from user where idx=?";
+		try {
+			Connection conn = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			
+			ResultSet rs = pstmt.executeQuery();
+
+			if(rs.next())
+			{
+				isCheck = rs.getBoolean(1);
+			}
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return isCheck;
+	}
+	
 }

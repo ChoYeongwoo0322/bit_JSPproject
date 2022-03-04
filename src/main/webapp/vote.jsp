@@ -4,6 +4,7 @@
 <%@ page import="java.util.Date" %>
 <%@page import="java.util.Calendar"%>
 <%@ page import="Pack.LoginManager"%>
+<%@page import="Pack.Authentication" %>
 
 <!DOCTYPE html>
 <html>
@@ -21,13 +22,23 @@
 	
 	Calendar cal = Calendar.getInstance();
 	long currentTime = cal.getTimeInMillis();
-	cal.set(2022, Calendar.MARCH, 4, 18, 0); 
-	long tmpTime = cal.getTimeInMillis();
 	%>
 	현재시간은
 	<%=hour%>시
 	<%=minute%>분
 	<%=second%>초입니다.
+	
+	<% request.setCharacterEncoding("UTF-8");%>
+	<% Authentication aut = new Authentication();
+		String voteTime = aut.getVoteTime();
+		String dueYear = voteTime.substring(0,4);
+		String dueMonth = voteTime.substring(5,7);
+		String dueDate = voteTime.substring(8,10);
+		String dueHour = voteTime.substring(11,13);
+		String dueMinute = voteTime.substring(14,16);
+		cal.set(Integer.parseInt(dueYear), Integer.parseInt(dueMonth)-1, Integer.parseInt(dueDate), Integer.parseInt(dueHour), Integer.parseInt(dueMinute));
+		long tmpTime = cal.getTimeInMillis();
+	%>
 	<form method="post" action="voteOk.jsp">
 		<div>
 			<input type="radio" id="han" name="res_nm" value="1" checked>
