@@ -161,7 +161,8 @@ table {
 			while (rs.next()) {
 				String res_nm = rs.getString("r.res_nm");
 				String count = rs.getString("count");
-				out.println("<span>"+res_nm+"</span>");
+				String rate = Integer.toString((Integer.parseInt(count)*100));
+				out.println("<span>"+res_nm+"("+count+rate+"명"+")"+"</span>");
 				out.println("<div class=\"charts__chart chart--blue chart--p" + count + "\" + data-percent></div>");
 			}
 			%>
