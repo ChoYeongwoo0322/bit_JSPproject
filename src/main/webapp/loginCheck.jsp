@@ -45,7 +45,7 @@
 	    }else{
 		%>
 	        <script>
-	            alert("로그인후 이용해 주세요.");
+	            alert("아이디 또는 비밀번호를 잘못 입력했습니다.\n입력하신 내용을 다시 확인해주세요.");
 	            location.href = "login.jsp";
 	        </script>
 		<% 
