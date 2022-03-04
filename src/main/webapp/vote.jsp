@@ -11,9 +11,10 @@
 <meta charset="UTF-8">
 <title>투표하기</title>
 <style>
-body{
-margin-top:50px;
+body {
+	margin-top: 50px;
 }
+
 .rad-label {
 	display: flex;
 	align-items: center;
@@ -180,14 +181,14 @@ button:hover .button-text {
 <body>
 	<h3>투표 종료 시간 2022.03.04 18:00 P.M</h3>
 	<%
- 	Calendar c = Calendar.getInstance();
+	Calendar c = Calendar.getInstance();
 	int hour = c.get(Calendar.HOUR_OF_DAY);
 	int minute = c.get(Calendar.MINUTE);
 	int second = c.get(Calendar.SECOND);
-	
+
 	Calendar cal = Calendar.getInstance();
 	long currentTime = cal.getTimeInMillis();
-	cal.set(2022, Calendar.MARCH, 4, 18, 0); 
+	cal.set(2022, Calendar.MARCH, 4, 18, 0);
 	long tmpTime = cal.getTimeInMillis();
 	%>
 	현재시간은
@@ -197,8 +198,9 @@ button:hover .button-text {
 	<form method="post" action="voteOk.jsp">
 		<div class="voteBody">
 			<label class="rad-label"> <input type="radio"
-				class="rad-input" name="rad" id="han" name="res_nm" value="1" checked="checked">
-				<span class="rad-design"></span> <span class="rad-text">한돈애</span>
+				class="rad-input" name="rad" id="han" name="res_nm" value="1"
+				checked="checked"> <span class="rad-design"></span> <span
+				class="rad-text">한돈애</span>
 			</label> <label class="rad-label"> <input type="radio"
 				class="rad-input" name="rad" id="cho" name="res_nm" value="2">
 				<span class="rad-design"></span> <span class="rad-text">초선과여포</span>
@@ -214,7 +216,9 @@ button:hover .button-text {
 			</label>
 		</div>
 
-		<%if(currentTime - tmpTime > 0 ){ %>
+		<%
+		if (currentTime - tmpTime > 0) {
+		%>
 		<div>
 			<!-- <input type="submit" value="투표" disabled> -->
 			<!-- <button class="learn-more">
@@ -224,7 +228,9 @@ button:hover .button-text {
 			</button> -->
 			<p style="color: red">* 투표가 마감되었습니다 *</p>
 		</div>
-		<%} else { %>
+		<%
+		} else {
+		%>
 		<div>
 			<!-- <input type="submit" value="투표"> -->
 			<button class="learn-more">
@@ -233,8 +239,16 @@ button:hover .button-text {
 				</span> <span class="button-text">투표하기</span>
 			</button>
 		</div>
-		<%} %>
+		<%
+		}
+		%>
 	</form>
+	<br>
+	<button class="learn-more" onclick="window.location.href='index.jsp'">
+		<span class="circle" aria-hidden="true"> <span
+			class="icon arrow"></span>
+		</span> <span class="button-text">Main</span>
+	</button>
 
 </body>
 </html>
