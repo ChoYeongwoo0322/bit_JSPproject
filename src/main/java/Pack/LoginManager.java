@@ -11,7 +11,7 @@ public class LoginManager implements HttpSessionBindingListener{
     
     //로그인한 접속자를 담기위한 해시테이블
     @SuppressWarnings("rawtypes")
-	private static Hashtable loginUsers = new Hashtable();
+   private static Hashtable loginUsers = new Hashtable();
     
     /*
      * 싱글톤 패턴 사용
@@ -29,7 +29,7 @@ public class LoginManager implements HttpSessionBindingListener{
      * Hashtable에 세션과 접속자 아이디를 저장한다.
      */
     @SuppressWarnings("unchecked")
-	public void valueBound(HttpSessionBindingEvent event) {
+   public void valueBound(HttpSessionBindingEvent event) {
         //session값을 put한다.
         loginUsers.put(event.getSession(), event.getName());
         System.out.println(event.getName() + "님이 로그인 하셨습니다.");
@@ -75,8 +75,8 @@ public class LoginManager implements HttpSessionBindingListener{
       */
      public boolean isValid(String userId, String userPw){
          
-    	 Authentication at = new Authentication();
-    	 return at.isMember(userId, userPw);
+        Authentication at = new Authentication();
+         return at.isMember(userId, userPw);
      }
 
 

@@ -164,9 +164,13 @@ input {
 
 <body>
    <div class="wrap">
-      <form method="post" action="index.jsp">
+      <form method="post" action="joinCheck.jsp">
          <div class="login">
             <h2 class="title">회원가입</h2>
+            <div class="login_id">
+               <h4>NAME</h4>
+               <input type="text" name="name" id="name" placeholder="사용하실 이름을 입력해주세요">
+            </div>
             <div class="login_id">
                <h4>ID</h4>
                <input type="text" name="id" id="id" placeholder="사용하실 아이디를 입력해주세요">
