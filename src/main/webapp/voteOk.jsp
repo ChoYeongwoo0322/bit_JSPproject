@@ -45,8 +45,9 @@
 			pstmt3 = con.prepareStatement(setVoted);
 			pstmt3.setInt(1, rs.getInt(1));
 			pstmt3.setInt(2, Integer.parseInt(choice));
-			pstmt2.executeQuery();
-			out.println("투표완료!");
+			pstmt3.executeUpdate();
+			out.println ("<html><body><script>");
+			out.println ("alert('투표완료!'); location.href=\"result.jsp\";</script></body></html>");
 		}
 		
 	}catch(ClassNotFoundException ce){
@@ -55,7 +56,7 @@
 		System.out.println(se.getMessage());
 	}finally{
 		try{
-			if(pstmt1!=null) pstmt1.close();
+			if(pstmt3!=null) pstmt3.close();
 			if(con!=null) con.close();
 		}catch(SQLException se){
 			System.out.println(se.getMessage());
