@@ -147,36 +147,46 @@ a {
 </style>
 </head>
 <body>
+<script>
+function doNotReload(){
+    if(    (event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82))
+        || (event.keyCode == 116) )
+    {
+      event.keyCode = 0;
+      event.cancelBubble = true;
+      event.returnValue = false;
+    }
+}
+document.onkeydown = doNotReload;
+</script>
 	<div class="indextitle">
-		<%
-		String userId = request.getParameter("userId");
-
-		String check = loginManager.getUserID(session);
-		if (check == null) {
-		%>
-		<div class="title">
-			<p> <a href="login.jsp" class="title">로그인</a>
-			</p>
-		</div>
-		<%
-		} else {
-		%>
-		<div class="title">
-			<p> <a href="logout.jsp" class="title">로그아웃</a><br>
-			</p>
-		</div>
-		<%
-		}
-		%>
-		<div class="title">
-			<p> <a href="vote.jsp" class="title">투표하러가기</a>
-			</p>
-		</div>
-		<div class="title">
-			<p> <a href="join.jsp" class="title">회원가입</a>
-			</p>
-		</div>
-
+        <%
+            String userId = request.getParameter("userId");
+						
+            String check = loginManager.getUserID(session);
+            if(check == null){
+            %>
+            <div>
+            	<p><a href="login.jsp" class="">로그인</a></p>
+		    </div>    
+            <%}	
+            else{
+            %>
+            <label>
+			    <a href="logout.jsp" class=""><h2>로그아웃</h2></a>
+            </label>
+            <%
+            }     
+        %>
+		<label>
+			<a href="vote.jsp" class=""><h2>투표하러가기</h2></a>
+		</label>
+		<label>
+			<a href="result.jsp" class=""><h2>투표결과보기</h2></a>
+		</label>
+		<label>
+			<a href="join.jsp" class=""><h2>회원가입</h2></a>
+		</label>
 	</div>
 	<div class="wrapper">
 		<div class="item">
