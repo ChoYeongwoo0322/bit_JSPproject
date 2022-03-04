@@ -147,7 +147,10 @@ a {
             %>
             <label>
 			    <a href="login.jsp" class=""><h2>로그인</h2></a>
-		    </label>    
+		    </label>
+    		<label>
+				<a href="join.jsp" class=""><h2>회원가입</h2></a>
+			</label>    
             <%}	
             else{
             %>
@@ -159,9 +162,6 @@ a {
         %>
 		<label>
 			<a href="vote.jsp" class=""><h2>투표하러가기</h2></a>
-		</label>
-		<label>
-			<a href="join.jsp" class=""><h2>회원가입</h2></a>
 		</label>
 	</div>
 	<div class="wrapper">
