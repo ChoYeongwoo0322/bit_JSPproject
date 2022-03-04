@@ -13,7 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% request.setCharacterEncoding("utf-8");%>
+<% request.setCharacterEncoding("UTF-8");%>
 	<% 
 	String choice = request.getParameter("res_nm");
 	String check = loginManager.getUserID(session);

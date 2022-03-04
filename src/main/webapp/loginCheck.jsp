@@ -17,7 +17,7 @@
 <body>
 	<%
 		String userId = request.getParameter("id");
-		String userPw = request.getParameter("pwd");
+		String userPw = request.getParameter("pwd");	
 		
 		if(loginManager.isValid(userId, userPw)){
 			session.setAttribute("userId", userId);
@@ -29,7 +29,7 @@
 	        if(loginManager.isUsing(userId)){
 		%>
 				이미 접속중입니다. 기존의 접속을 종료하시겠습니까?<P>
-           			<a href="disconnect.jsp">예 </a>
+           			<a href="disconnect.jsp">예</a>
            			<a href="login.jsp">아니오</a>
 		<%
 	        }else{
