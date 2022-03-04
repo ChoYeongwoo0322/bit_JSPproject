@@ -206,6 +206,7 @@ a {
 		%>
 		<span> <a href="result.jsp" class="">투표결과보기</a>
 		</span>
+		<span> <a href="admin.jsp" class="">시간설정(관리자)</a></span>
 	</div>
 	<div class="wrapper">
 		<div class="item">

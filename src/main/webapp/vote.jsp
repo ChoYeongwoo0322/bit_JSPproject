@@ -180,7 +180,7 @@ button:hover .button-text {
 </style>
 </head>
 <body>
-	<h3>투표 종료 시간 2022.03.04 18:00 P.M</h3>
+	
 	<%
 	Calendar c = Calendar.getInstance();
 	int hour = c.get(Calendar.HOUR_OF_DAY);
@@ -190,10 +190,7 @@ button:hover .button-text {
 	Calendar cal = Calendar.getInstance();
 	long currentTime = cal.getTimeInMillis();
 	%>
-	현재시간은
-	<%=hour%>시
-	<%=minute%>분
-	<%=second%>초입니다.
+
 	
 	<% request.setCharacterEncoding("UTF-8");%>
 	<% Authentication aut = new Authentication();
@@ -206,6 +203,11 @@ button:hover .button-text {
 		cal.set(Integer.parseInt(dueYear), Integer.parseInt(dueMonth)-1, Integer.parseInt(dueDate), Integer.parseInt(dueHour), Integer.parseInt(dueMinute));
 		long tmpTime = cal.getTimeInMillis();
 	%>
+	<h3>투표 종료 시간 <%= voteTime %></h3>
+		현재시간은
+	<%=hour%>시
+	<%=minute%>분
+	<%=second%>초입니다.
 	<form method="post" action="voteOk.jsp">
 		<div class="voteBody">
 			<label class="rad-label"> <input type="radio"
