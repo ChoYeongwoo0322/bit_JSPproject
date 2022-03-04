@@ -56,7 +56,7 @@ public class Authentication {
 	
 	public ResultSet getResult() {
 		String sql = "select r.res_nm, count(v.res) as count, count(v.res)/count(v.id) as rate from voted v" + " join result r on r.id = v.res"
-				+ " group by v.res";
+				+ " group by v.res;";
 
 		try {
 			Connection conn = ConnectionProvider.getConnection();
@@ -73,7 +73,7 @@ public class Authentication {
 	}
 	
 	public int allCount() {
-		String sql = "select count(*) as total from voted";
+		String sql = "select count(*) as total from voted;";
 		
 		try {
 			Connection conn = ConnectionProvider.getConnection();
@@ -89,5 +89,67 @@ public class Authentication {
 			System.out.println(e.getMessage());
 		}
 		return 0;
+	}
+	
+	public int getUserIdx(String idx) {
+		String sql = "select idx from user where id=?;";
+		try {
+			Connection conn = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, idx);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next())
+			{
+				return rs.getInt(1);
+			}
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return 0;
+	}
+	
+	public Boolean isVoted(int idx) {
+		Boolean isCheck = null;
+		String sql = "select exists(select * from voted where user_idx = ?) as isVoted;";
+		try {
+			Connection conn = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			
+			ResultSet rs = pstmt.executeQuery();
+
+			if(rs.next())
+			{
+				isCheck = rs.getBoolean(1);
+			}
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return isCheck;
+	}
+	public Boolean setVoted(int idx, String choice) {
+		String sql =  "insert into voted values(null,?,?)";
+		try {
+			Connection conn = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.setInt(2, Integer.parseInt(choice));
+			
+			int result = pstmt.executeUpdate();
+
+			if(result == 1)
+			{
+				return true;
+			}
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return false;
 	}
 }
