@@ -18,6 +18,7 @@
 </head>
 <body>
 	<%
+		request.setCharacterEncoding("UTF-8");
 		String userId = request.getParameter("id");
 		String userPw = request.getParameter("pwd");
 		String userName = request.getParameter("name");
