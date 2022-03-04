@@ -146,13 +146,15 @@ table {
 		%>
 
 		<div class="charts" style="margin-left: 200px;">
+			<p>투표 참여 인원  : <%= allCount %> 명</p>
 			<%
 			while (rs.next()) {
 				String res_nm = rs.getString("r.res_nm");
 				String count = rs.getString("count");
-				String rate = Integer.toString((Integer.parseInt(count) * 100));
-				out.println("<span>" + res_nm + "(" + count + rate + "명" + ")" + "</span>");
-				out.println("<div class=\"charts__chart chart--blue chart--p" + count + "\" + data-percent></div>");
+				double rate = (((double)Integer.parseInt(count)/allCount));
+				int rateValue = (int) Math.round(rate*100);
+				out.println("<span>" + res_nm + "(" + count + "명" + ")" + "</span>");
+				out.println("<div class=\"charts__chart chart--blue chart--p" + rateValue + "\" + data-percent></div>");
 			}
 			%>
 		</div>
