@@ -2,10 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.Date"%>
-<%@page import="java.util.Calendar"%>
 <%@ page import="Pack.LoginManager"%>
 <%@page import="Pack.Authentication"%>
-
+<%@page import="java.time.LocalTime"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Locale"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -180,24 +181,17 @@ button:hover .button-text {
 </style>
 </head>
 <body>
-
-	<%
-	Calendar cal = Calendar.getInstance();
-	long currentTime = cal.getTimeInMillis();
-	%>
-	<% request.setCharacterEncoding("UTF-8");%>
-	<% Authentication aut = new Authentication();
-		String voteTime = aut.getVoteTime();
-		String dueYear = voteTime.substring(0,4);
-		String dueMonth = voteTime.substring(5,7);
-		String dueDate = voteTime.substring(8,10);
-		String dueHour = voteTime.substring(11,13);
-		String dueMinute = voteTime.substring(14,16);
-		cal.set(Integer.parseInt(dueYear), Integer.parseInt(dueMonth)-1, Integer.parseInt(dueDate), Integer.parseInt(dueHour), Integer.parseInt(dueMinute));
-		long tmpTime = cal.getTimeInMillis();
-	%>
-	<h1><%= dueYear %>년<%= dueMonth %>월<%= dueDate %>일<%= dueHour %>시<%= dueMinute %>분 까지 투표가능</h1>
-	<h2 id="clock" style="color:black;">clock</h2>
+	 <% 
+	 Authentication aut = new Authentication();
+	 LocalTime now = LocalTime.now();
+	 String voteTime = aut.getVoteTime();
+	 SimpleDateFormat f = new SimpleDateFormat("HH:mm", Locale.KOREA);
+	 Date currentTime = f.parse(now.getHour()+":"+now.getMinute());
+	 Date tmpTime = f.parse(voteTime); 
+	 long diff = currentTime.getTime() - tmpTime.getTime();
+	 %>
+	 <h1>매일<%= voteTime %> 까지 투표 가능</h1>
+	 <h2 id="clock" style="color:black;">clock</h2>
 	<script type="text/javascript" src="clock.js?v=<%=System.currentTimeMillis() %>"></script>
 	<form method="post" action="voteOk.jsp">
 		<div class="voteBody">
@@ -220,7 +214,7 @@ button:hover .button-text {
 		</div>
 
 		<%
-		if (currentTime - tmpTime > 0) {
+		if (diff>0) {
 		%>
 		<div>
 			<p style="color: red">* 투표가 마감되었습니다 *</p>
