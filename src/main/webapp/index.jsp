@@ -6,6 +6,7 @@
 <%@page import="java.sql.Driver"%>
 <%@ page import="java.util.Objects"%>
 <%@ page import="Pack.LoginManager"%>
+<%@page import="Pack.Authentication" %>
 
 <%
 LoginManager loginManager = LoginManager.getInstance();
@@ -171,9 +172,10 @@ a {
 		}
 		document.onkeydown = doNotReload;
 	</script>
+	
 	<%
 	String sessionCheck = loginManager.getUserID(session);
-	System.out.print(sessionCheck);
+
 	%>
 	<div class="indextitle">
 		<%
@@ -187,9 +189,16 @@ a {
 		</span>
 		<%
 		} else {
+			Authentication aut = new Authentication();
+			int idx = aut.getUserIdx(sessionCheck);
+
+			Boolean adminCheck = aut.isAdmin(idx);
 		%>
 		<span> <a href="logout.jsp" class="">로그아웃</a>&nbsp;
 		</span>
+		<% if(adminCheck) {%>
+		<span> <a href="admin.jsp" class="">시간설정(관리자)</a></span>
+		 <%}%>
 		<%
 		}
 		%>
@@ -207,9 +216,10 @@ a {
 		%>
 		<span> <a href="result.jsp" class="">투표결과보기</a>
 		</span>
+		
 	</div>
 	<div class="wrapper">
-		<div class="item">
+		<div class="item" onClick="location.href='https://map.naver.com/v5/search/%ED%95%9C%EB%8F%88%EC%95%A0/place/20767050?c=14140171.8356046,4508331.2158242,15,0,0,0,dh&placePath=%3Fentry%253Dbmp'">
 			<div class="polaroid">
 				<Image
 					src="https://s3-ap-northeast-1.amazonaws.com/dcreviewsresized/300_300_20201012114052523_photo_0f71b8e39c09.jpg"
@@ -217,14 +227,14 @@ a {
 				<div class="caption">한돈애</div>
 			</div>
 		</div>
-		<div class="item">
+		<div class="item" onClick="location.href='https://map.naver.com/v5/search/%EC%B4%88%EC%84%A0%EA%B3%BC%EC%97%AC%ED%8F%AC/place/13149692?c=14139815.7690813,4508175.0987557,15,0,0,0,dh&placePath=%3Fentry%253Dbmp'">
 			<div class="polaroid">
 				<Image src="https://t1.daumcdn.net/cfile/blog/99EA533D5D4B6AC520"
 					width="390" height="220" alt="" />
 				<div class="caption">초선과여포</div>
 			</div>
 		</div>
-		<div class="item">
+		<div class="item" onClick="location.href='https://map.naver.com/v5/entry/place/1417398034?c=14139815.7690813,4508175.0987557,15,0,0,0,dh'">
 			<div class="polaroid">
 				<Image
 					src="http://res.heraldm.com/phpwas/restmb_idxmake.php?idx=507&simg=/content/image/2017/12/20/20171220000900_0.jpg"
@@ -232,7 +242,7 @@ a {
 				<div class="caption">오늘의통닭</div>
 			</div>
 		</div>
-		<div class="item">
+		<div class="item" onClick="location.href='https://map.naver.com/v5/search/%ED%95%98%EB%82%98%EC%9A%B0%EB%8F%99/place/19712875?c=14139785.0782977,4508260.2353750,15,0,0,0,dh&placePath=%3Fentry%253Dbmp'">
 			<div class="polaroid">
 				<Image
 					src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbJBptc%2FbtqBZOcMAkG%2FbLFnAD8z3v3IhBDFymYaCk%2Fimg.jpg"
@@ -240,12 +250,12 @@ a {
 				<div class="caption">하나우동</div>
 			</div>
 		</div>
-		<div class="item">
+		<div class="item" onClick="location.href='https://map.naver.com/v5/search/%ED%99%94%EB%8F%88/place/1813075055?c=14139788.8631604,4508232.7637271,15,0,0,0,dh&placePath=%3Fentry%253Dbmp'">
 			<div class="polaroid">
 				<Image
 					src="https://ai.esmplus.com/foodjang01/images/221400244_b_1.jpg"
 					width="390" height="220" alt="" />
-				<div class="caption">살로만</div>
+				<div class="caption">화돈</div>
 			</div>
 		</div>
 		<!-- <div class="item">
