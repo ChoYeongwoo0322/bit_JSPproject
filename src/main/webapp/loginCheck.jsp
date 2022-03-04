@@ -16,9 +16,10 @@
 </head>
 <body>
 	<%
+		request.setCharacterEncoding("UTF-8");
 		String userId = request.getParameter("id");
 		String userPw = request.getParameter("pwd");	
-		
+        System.out.println(userId);
 		if(loginManager.isValid(userId, userPw)){
 			session.setAttribute("userId", userId);
 		        
