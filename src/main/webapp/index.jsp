@@ -45,7 +45,7 @@ body {
 }
 
 .polaroid {
-	background: #fff;
+	background: #FAFAFA;
 	padding: 1rem;
 	box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
 }
@@ -161,6 +161,7 @@ a {
 </style>
 </head>
 <body>
+	
 	<script>
 		function doNotReload() {
 			if ((event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82))
@@ -175,7 +176,7 @@ a {
 	
 	<%
 	String sessionCheck = loginManager.getUserID(session);
-
+	Authentication aut = new Authentication();
 	%>
 		<%
 		LoginManager lm = new LoginManager();
@@ -188,9 +189,11 @@ a {
 		<%}%>
 	<div class="indextitle">
 		<%
-		String userId = request.getParameter("userId");
-
+		//String userId = request.getParameter("userId");
 		String check = loginManager.getUserID(session);
+		String idsName = aut.getName(check);
+		System.out.println(check + "--" + idsName + "환영합니다.");
+		
 		if (check == null) {
 		%>
 		<span> <a href="login.jsp" class="">로그인</a>&nbsp;
@@ -198,12 +201,14 @@ a {
 		</span>
 		<%
 		} else {
-			Authentication aut = new Authentication();
+			
 			int idx = aut.getUserIdx(sessionCheck);
 
 			Boolean adminCheck = aut.isAdmin(idx);
 		%>
-		<span> <a href="logout.jsp" class="">로그아웃</a>&nbsp;
+		<span> 
+		<label><%=idsName%>님 환영합니다.</label>&nbsp;
+		<a href="logout.jsp" class="">로그아웃</a>&nbsp;
 		</span>
 		<% if(adminCheck) {%>
 		<span> <a href="admin.jsp" class="">시간설정(관리자)</a></span>
