@@ -186,6 +186,10 @@ button:hover .button-text {
 	 LocalTime now = LocalTime.now();
 	 String voteTime = aut.getVoteTime();
 	 SimpleDateFormat f = new SimpleDateFormat("HH:mm", Locale.KOREA);
+	 int newCurrentTime = now.getHour()+9;
+	 if(newCurrentTime>24){
+		 newCurrentTime = newCurrentTime%24;
+	 }
 	 Date currentTime = f.parse(now.getHour()+":"+now.getMinute());
 	 Date tmpTime = f.parse(voteTime); 
 	 long diff = currentTime.getTime() - tmpTime.getTime();
