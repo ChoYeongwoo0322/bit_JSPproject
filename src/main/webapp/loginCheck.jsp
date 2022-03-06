@@ -16,10 +16,10 @@
 </head>
 <body>
 	<%
-		request.setCharacterEncoding("UTF-8");
-		String userId = request.getParameter("id");
-		String userPw = request.getParameter("pwd");	
-        System.out.println(userId);
+	request.setCharacterEncoding("UTF-8");
+	String userId = request.getParameter("id");
+	String userPw = request.getParameter("pwd");
+	System.out.println(userId);
 		if(loginManager.isValid(userId, userPw)){
 			session.setAttribute("userId", userId);
 		        
@@ -29,29 +29,32 @@
 	        loginManager.printloginUsers();
 	        if(loginManager.isUsing(userId)){
 		%>
-				이미 접속중입니다. 기존의 접속을 종료하시겠습니까?<P>
-           			<a href="disconnect.jsp">예</a>
-           			<a href="login.jsp">아니오</a>
+	이미 접속중입니다. 기존의 접속을 종료하시겠습니까?
+	<P>
+		<a href="disconnect.jsp">예</a> <a href="login.jsp">아니오</a>
 		<%
 	        }else{
 	            loginManager.setSession(session, userId);
 	            %>
-	    		<jsp:forward page="index.jsp">
-	    			<jsp:param value="<%=userId%>" name="userId"/>
-	    		</jsp:forward>
-	    		<%	
+	             <script>
+	            location.href = "index.jsp"
+		
+	</script>
+		<%-- <jsp:forward page="index.jsp">
+			<jsp:param value="<%=userId%>" name="userId" />
+		</jsp:forward> --%>
+		<%	
 	        }
 		%>
 		<%
 	    }else{
 		%>
-	        <script>
+		<script>
 	            alert("아이디 또는 비밀번호를 잘못 입력했습니다.\n입력하신 내용을 다시 확인해주세요.");
 	            location.href = "login.jsp";
 	        </script>
-		<% 
+		<%
 	    }
 		%>
-	%>
 </body>
 </html>

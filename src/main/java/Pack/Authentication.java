@@ -214,5 +214,23 @@ public class Authentication {
 		}
 		return isCheck;
 	}
+	public String getName(String id) {
+		String userName = null;
+		String sql =  "select name from user where id=?";
+		try {
+			Connection conn = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			userName = rs.getString("name");
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return userName;
+	}
 	
 }
