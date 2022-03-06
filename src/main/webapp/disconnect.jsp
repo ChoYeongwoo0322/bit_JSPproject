@@ -18,9 +18,13 @@
         //새로운 세션을 등록한다. setSession함수를 수행하면 valueBound()함수가 호출된다.
         loginManager.setSession(session, userId);
         %>
-		<jsp:forward page="index.jsp">
+        <script>
+	            location.href = "index.jsp"
+		
+	</script>
+		<%-- <jsp:forward page="index.jsp">
 			<jsp:param value="<%=userId%>" name="userId"/>
-		</jsp:forward>
+		</jsp:forward> --%>
 		<%	
         response.sendRedirect("index.jsp");
     }
