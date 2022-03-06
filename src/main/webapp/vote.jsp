@@ -190,7 +190,7 @@ button:hover .button-text {
 	 if(newCurrentTime>24){
 		 newCurrentTime = newCurrentTime%24;
 	 }
-	 Date currentTime = f.parse(now.getHour()+":"+now.getMinute());
+	 Date currentTime = f.parse(newCurrentTime+":"+now.getMinute());
 	 Date tmpTime = f.parse(voteTime); 
 	 long diff = currentTime.getTime() - tmpTime.getTime();
 	 %>
