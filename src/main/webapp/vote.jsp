@@ -186,7 +186,11 @@ button:hover .button-text {
 	 LocalTime now = LocalTime.now();
 	 String voteTime = aut.getVoteTime();
 	 SimpleDateFormat f = new SimpleDateFormat("HH:mm", Locale.KOREA);
-	 Date currentTime = f.parse(now.getHour()+":"+now.getMinute());
+	 int newCurrentTime = now.getHour()+9;
+	 if(newCurrentTime>24){
+		 newCurrentTime = newCurrentTime%24;
+	 }
+	 Date currentTime = f.parse(newCurrentTime+":"+now.getMinute());
 	 Date tmpTime = f.parse(voteTime); 
 	 long diff = currentTime.getTime() - tmpTime.getTime();
 	 %>
@@ -200,16 +204,16 @@ button:hover .button-text {
 				<span class="rad-design"></span> <span class="rad-text">한돈애</span>
 			</label> <label class="rad-label"> <input type="radio"
 				class="rad-input" name="rad" id="cho" value="2"> <span
-				class="rad-design"></span> <span class="rad-text">초선과여포</span>
+				class="rad-design"></span> <span class="rad-text">오늘통닭</span>
 			</label> <label class="rad-label"> <input type="radio"
 				class="rad-input" name="rad" id="tong" value="3"> <span
-				class="rad-design"></span> <span class="rad-text">오늘통닭</span>
+				class="rad-design"></span> <span class="rad-text">화돈</span>
 			</label> <label class="rad-label"> <input type="radio"
 				class="rad-input" name="rad" id="tong" value="4"> <span
 				class="rad-design"></span> <span class="rad-text">하나우동</span>
 			</label> <label class="rad-label"> <input type="radio"
 				class="rad-input" name="rad" id="sal" value="5"> <span
-				class="rad-design"></span> <span class="rad-text">화돈</span>
+				class="rad-design"></span> <span class="rad-text">초선과여포</span>
 			</label>
 		</div>
 
